@@ -3,19 +3,19 @@ interface Props { mobile?: boolean }
 const skillGroups = [
   {
     category: "Frontend",
-    items: ["React", "TypeScript", "TailwindCSS", "Redux Toolkit", "HTML5 / CSS3", "Styled Components", "Vite"],
+    items: ["React", "JavaScript", "TypeScript", "TailwindCSS", "HTML5 / CSS3", "Arquitectura SPA", "Vite"],
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "Spring Boot", "REST APIs", "JWT Auth", "PostgreSQL", "MongoDB", "MySQL"],
+    items: ["Node.js", "Express", "Spring Boot", "APIs REST", "JWT Auth", "PostgreSQL", "MongoDB", "MySQL"],
   },
   {
-    category: "Tools",
+    category: "Herramientas",
     items: ["Git / GitHub", "Docker", "AWS S3", "Figma", "Postman", "VS Code", "IntelliJ IDEA"],
   },
   {
-    category: "Concepts",
-    items: ["C4 Architecture", "RBAC", "Layered Architecture", "Component Design", "ER Diagrams", "UML / Flow Charts", "Clean Code"],
+    category: "Conceptos",
+    items: ["Arquitectura C4", "RBAC", "Arquitectura en Capas", "Diseño de Componentes", "Diagramas ER", "UML / Flujos", "Código Limpio"],
   },
 ]
 
@@ -24,7 +24,7 @@ export default function WireframeSkills({ mobile }: Props) {
     <section className={`border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
       <div className="flex items-center gap-4 mb-8">
-        <span className="text-xs tracking-widest uppercase font-bold">04 — Skills</span>
+        <span className="text-xs tracking-widest uppercase font-bold">04 — Habilidades</span>
         <div className="flex-1 border-t border-black" />
       </div>
 

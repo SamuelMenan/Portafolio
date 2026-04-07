@@ -9,7 +9,7 @@ export default function WireframeHero({ mobile }: Props) {
         <div className="flex flex-col gap-5">
           {/* Role tag */}
           <div className="border border-black w-fit px-3 py-1 text-xs tracking-widest uppercase">
-            Frontend-Focused Software Engineering Student
+            Estudiante de Ingeniería de Software enfocado en Frontend
           </div>
 
           {/* Name */}
@@ -22,18 +22,18 @@ export default function WireframeHero({ mobile }: Props) {
           {/* Statement */}
           <div className="border border-dashed border-gray-500 px-4 py-3">
             <p className="text-sm text-gray-700 leading-relaxed">
-              "I design systems before interfaces — building efficient, structured solutions
-              through requirements analysis, architecture planning, and intentional code."
+              "Diseño sistemas antes que interfaces — construyendo soluciones eficientes y estructuradas
+              a través del análisis de requisitos, planificación de arquitectura y código intencional."
             </p>
           </div>
 
           {/* CTA */}
           <div className="flex gap-4 flex-wrap">
             <div className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase bg-black text-white w-fit">
-              [ VIEW PROJECTS ]
+              [ VER PROYECTOS ]
             </div>
             <div className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase w-fit">
-              [ DOWNLOAD CV ]
+              [ DESCARGAR CV ]
             </div>
           </div>
         </div>
@@ -42,16 +42,16 @@ export default function WireframeHero({ mobile }: Props) {
         {!mobile && (
           <div className="flex flex-col gap-3 self-start">
             <div className="border-2 border-dashed border-gray-400 p-4">
-              <p className="text-xs font-bold tracking-widest mb-2 uppercase">Status</p>
+              <p className="text-xs font-bold tracking-widest mb-2 uppercase">Estado</p>
               <div className="space-y-2 text-xs text-gray-600">
                 <div className="flex justify-between border-b border-gray-300 pb-1">
-                  <span>Availability</span><span className="font-bold text-black">Open to Work</span>
+                  <span>Disponibilidad</span><span className="font-bold text-black">Abierto a Trabajar</span>
                 </div>
                 <div className="flex justify-between border-b border-gray-300 pb-1">
-                  <span>Focus</span><span className="font-bold text-black">Frontend Dev</span>
+                  <span>Enfoque</span><span className="font-bold text-black">Desarrollo Frontend</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Location</span><span className="font-bold text-black">Ecuador</span>
+                  <span>Ubicación</span><span className="font-bold text-black">Ecuador</span>
                 </div>
               </div>
             </div>
