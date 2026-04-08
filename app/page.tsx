@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-white font-mono text-black">
       {/* DESKTOP VIEW */}
-      <section className="border-b-4 border-black">
+      <section className="hidden border-b-4 border-black lg:block">
         <div className="max-w-[1100px] mx-auto px-8 pb-16">
           <WireframeNav />
           <WireframeHero />
@@ -23,7 +23,7 @@ export default function Page() {
       </section>
 
       {/* MOBILE VIEW */}
-      <section>
+      <section className="lg:hidden">
         <div className="max-w-[390px] mx-auto px-4 pb-16 border-x-2 border-dashed border-gray-400">
           <WireframeNav mobile />
           <WireframeHero mobile />
