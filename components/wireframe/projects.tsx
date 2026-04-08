@@ -1,3 +1,5 @@
+import WireframeProcess from "@/components/wireframe/process"
+
 interface Props { mobile?: boolean }
 
 const projects = [
@@ -55,7 +57,7 @@ export default function WireframeProjects({ mobile }: Props) {
       <div className="flex items-center gap-4 mb-8">
         <span className="text-xs tracking-widest uppercase font-bold">03 — Proyectos</span>
         <div className="flex-1 border-t border-black" />
-        <span className="text-xs text-gray-500">5 casos de estudio</span>
+        <span className="text-xs text-gray-500">5 casos de estudio + proceso</span>
       </div>
 
       <div className="flex flex-col gap-6">
@@ -104,6 +106,10 @@ export default function WireframeProjects({ mobile }: Props) {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-8 border-t-2 border-black pt-6">
+        <WireframeProcess mobile={mobile} embedded />
       </div>
     </section>
   )

@@ -10,7 +10,7 @@ export default function WireframeNav({ mobile }: Props) {
         <div className="border border-black px-3 py-1 text-xs">☰ MENÚ</div>
       ) : (
         <div className="flex gap-6 text-xs tracking-widest">
-          {["Sobre Mí", "Proyectos", "Habilidades", "Proceso", "Contacto"].map((item) => (
+          {["Sobre Mí", "Proyectos", "Habilidades", "Testimonios", "Contacto"].map((item) => (
             <div key={item} className="border-b-2 border-black pb-0.5 cursor-pointer">
               {item.toUpperCase()}
             </div>

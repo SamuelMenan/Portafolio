@@ -1,4 +1,7 @@
-interface Props { mobile?: boolean }
+interface Props {
+  mobile?: boolean
+  embedded?: boolean
+}
 
 const steps = [
   {
@@ -33,14 +36,21 @@ const steps = [
   },
 ]
 
-export default function WireframeProcess({ mobile }: Props) {
+export default function WireframeProcess({ mobile, embedded }: Props) {
   return (
-    <section className={`border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
+    <section className={embedded ? `${mobile ? "pt-6" : "pt-8"}` : `border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
-      <div className="flex items-center gap-4 mb-8">
-        <span className="text-xs tracking-widest uppercase font-bold">05 — Arquitectura / Proceso</span>
-        <div className="flex-1 border-t border-black" />
-      </div>
+      {embedded ? (
+        <div className="flex items-center gap-4 mb-8">
+          <span className="text-xs tracking-widest uppercase font-bold">Proceso aplicado a los proyectos</span>
+          <div className="flex-1 border-t border-black" />
+        </div>
+      ) : (
+        <div className="flex items-center gap-4 mb-8">
+          <span className="text-xs tracking-widest uppercase font-bold">05 — Arquitectura / Proceso</span>
+          <div className="flex-1 border-t border-black" />
+        </div>
+      )}
 
       <div className={`grid gap-8 ${mobile ? "grid-cols-1" : "grid-cols-[1fr_2fr]"}`}>
 
@@ -69,7 +79,7 @@ export default function WireframeProcess({ mobile }: Props) {
           {steps.map((s, i) => (
             <div
               key={s.step}
-              className={`border-l-4 border-black border-t border-gray-300 ${mobile ? "pl-4 py-3" : "pl-6 py-4"} ${i === 0 ? "border-t-0" : ""}`}
+              className={`border-l-4 border-l-black border-t border-t-gray-300 ${mobile ? "pl-4 py-3" : "pl-6 py-4"} ${i === 0 ? "border-t-0" : ""}`}
             >
               <div className="flex items-start gap-4">
                 <span className="text-2xl font-bold text-gray-200 leading-none select-none">{s.step}</span>
