@@ -175,11 +175,11 @@
 }
 
 .portfolio-theme .portfolio-shell {
-  border-left: 1px solid var(--portfolio-edge);
-  border-right: 1px solid var(--portfolio-edge);
-  background-color: var(--portfolio-bg);
-  background: var(--portfolio-shell-gradient);
-  box-shadow: 0 18px 48px rgb(26 17 12 / 20%);
+  border-left: 0;
+  border-right: 0;
+  background-color: transparent;
+  background: transparent;
+  box-shadow: none;
 }
 
 .portfolio-theme .portfolio-shell > section {
@@ -192,8 +192,8 @@
 }
 
 .portfolio-theme .portfolio-shell-mobile {
-  border-left: 1px dashed var(--portfolio-edge);
-  border-right: 1px dashed var(--portfolio-edge);
+  border-left: 0;
+  border-right: 0;
 }
 
 .portfolio-theme .border-black {

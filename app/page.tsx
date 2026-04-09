@@ -11,7 +11,7 @@ export default function Page() {
     <div className="portfolio-theme min-h-screen">
       {/* DESKTOP VIEW */}
       <section className="hidden lg:block">
-        <div className="portfolio-shell max-w-[1100px] mx-auto px-8 pb-16">
+        <div className="portfolio-shell w-full px-8 xl:px-14 pb-16">
           <WireframeNav />
           <WireframeHero />
           <WireframeAbout />
@@ -24,7 +24,7 @@ export default function Page() {
 
       {/* MOBILE VIEW */}
       <section className="lg:hidden">
-        <div className="portfolio-shell portfolio-shell-mobile max-w-[390px] mx-auto px-4 pb-16">
+        <div className="portfolio-shell portfolio-shell-mobile w-full px-4 pb-16">
           <WireframeNav mobile />
           <WireframeHero mobile />
           <WireframeAbout mobile />
