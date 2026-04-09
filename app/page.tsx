@@ -6,7 +6,7 @@ import WireframeHero from "@/components/wireframe/hero"
 import WireframeAbout from "@/components/wireframe/about"
 import WireframeProjects from "@/components/wireframe/projects"
 import WireframeSkills from "@/components/wireframe/skills"
-import WireframeTestimonios from "@/components/wireframe/testimonios"
+import WireframeTestimonials from "@/components/wireframe/testimonials"
 import WireframeContact from "@/components/wireframe/contact"
 
 export default function Page() {
@@ -35,7 +35,7 @@ export default function Page() {
           <WireframeAbout lang={lang} />
           <WireframeProjects lang={lang} />
           <WireframeSkills lang={lang} />
-          <WireframeTestimonios lang={lang} />
+          <WireframeTestimonials lang={lang} />
           <WireframeContact lang={lang} />
         </div>
       </section>
@@ -48,7 +48,7 @@ export default function Page() {
           <WireframeAbout mobile lang={lang} />
           <WireframeProjects mobile lang={lang} />
           <WireframeSkills mobile lang={lang} />
-          <WireframeTestimonios mobile lang={lang} />
+          <WireframeTestimonials mobile lang={lang} />
           <WireframeContact mobile lang={lang} />
         </div>
       </section>
