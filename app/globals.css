@@ -312,6 +312,86 @@
   border-color: var(--portfolio-accent) !important;
 }
 
+.wireframe-nav {
+  position: relative;
+}
+
+.wireframe-nav::after {
+  content: '';
+  position: absolute;
+  left: calc(-50vw + 50%);
+  right: calc(-50vw + 50%);
+  bottom: 0;
+  border-bottom: 1px solid var(--portfolio-line);
+}
+
+.wireframe-nav__brand,
+.wireframe-nav__menu,
+.wireframe-nav__link {
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.wireframe-nav__brand,
+.wireframe-nav__menu {
+  border-radius: 999px;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+.wireframe-nav__links {
+  align-items: center;
+}
+
+.wireframe-nav__link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border-bottom-width: 1px;
+}
+
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.language-switch__chip {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--portfolio-line) 65%, transparent);
+  background: color-mix(in oklab, var(--portfolio-surface-alt) 75%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  opacity: 0.82;
+}
+
+.language-switch__chip.is-active {
+  opacity: 1;
+  border-color: var(--portfolio-accent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--portfolio-accent) 20%, transparent);
+}
+
+.language-switch__chip:hover {
+  transform: translateY(-1px);
+}
+
+.language-switch__chip:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--portfolio-accent) 70%, #ffffff 30%);
+  outline-offset: 2px;
+}
+
+.dark .language-switch__chip {
+  background: color-mix(in oklab, var(--portfolio-surface-deep) 80%, transparent);
+}
+
 .material-symbols-rounded {
   font-family: 'Material Symbols Rounded';
   font-weight: normal;
@@ -329,9 +409,9 @@
 }
 
 .theme-toggle {
-  --toggle-width: 7.8rem;
-  --toggle-height: 3rem;
-  --thumb-size: 2.35rem;
+  --toggle-width: 5.2rem;
+  --toggle-height: 2.1rem;
+  --thumb-size: 1.55rem;
   position: relative;
   display: inline-flex;
   width: var(--toggle-width);
@@ -345,9 +425,9 @@
 }
 
 .theme-toggle--compact {
-  --toggle-width: 6.1rem;
-  --toggle-height: 2.5rem;
-  --thumb-size: 1.95rem;
+  --toggle-width: 4.8rem;
+  --toggle-height: 1.95rem;
+  --thumb-size: 1.4rem;
 }
 
 .theme-toggle.is-light {
@@ -367,11 +447,11 @@
 }
 
 .theme-toggle__icon--sun {
-  left: 0.78rem;
+  left: 0.5rem;
 }
 
 .theme-toggle__icon--moon {
-  right: 0.82rem;
+  right: 0.52rem;
 }
 
 .theme-toggle.is-light .theme-toggle__icon--sun {
@@ -397,7 +477,7 @@
 .theme-toggle__thumb {
   position: absolute;
   top: 50%;
-  left: 0.26rem;
+  left: 0.2rem;
   width: var(--thumb-size);
   height: var(--thumb-size);
   border-radius: 999px;
@@ -422,7 +502,7 @@
 }
 
 .theme-toggle.is-dark .theme-toggle__thumb {
-  transform: translate(calc(var(--toggle-width) - var(--thumb-size) - 0.56rem), -50%);
+  transform: translate(calc(var(--toggle-width) - var(--thumb-size) - 0.4rem), -50%);
 }
 
 .theme-toggle:focus-visible {
