@@ -125,60 +125,53 @@
 }
 
 :root {
-  --portfolio-bg: #f4eadf;
-  --portfolio-surface: #ede0d1;
-  --portfolio-surface-alt: #e3d2bf;
-  --portfolio-line: #af8d73;
-  --portfolio-line-soft: #c3a384;
-  --portfolio-text: #3d2c21;
-  --portfolio-muted: #6d5644;
-  --portfolio-accent: #a86844;
-  --portfolio-accent-strong: #c6845f;
-  --portfolio-card: #f1e2d3;
-  --portfolio-field: #e5d3c0;
-  --portfolio-surface-deep: #d6c2ad;
-  --portfolio-chip: #b89577;
-  --portfolio-edge: rgb(175 141 115 / 45%);
-  --portfolio-glow-a: rgb(198 132 95 / 20%);
-  --portfolio-glow-b: rgb(163 134 104 / 18%);
-  --portfolio-bg-gradient: linear-gradient(180deg, #f6ece0 0%, #f0e2d2 40%, #e8d7c2 100%);
-  --portfolio-shell-gradient: linear-gradient(180deg, rgb(255 255 255 / 28%) 0%, rgb(128 88 56 / 8%) 100%);
-  --portfolio-section-alt: linear-gradient(180deg, rgb(255 255 255 / 16%) 0%, rgb(122 86 58 / 10%) 100%);
-  --portfolio-panel-sheen: linear-gradient(180deg, rgb(255 255 255 / 30%), rgb(122 86 58 / 8%));
-  --portfolio-on-accent: #fff7ef;
+  --portfolio-bg: #f5ebdf;
+  --portfolio-surface: #efe2d3;
+  --portfolio-surface-alt: #e8d8c6;
+  --portfolio-line: #b39377;
+  --portfolio-line-soft: #c4a78b;
+  --portfolio-text: #3a2a1f;
+  --portfolio-muted: #6b5543;
+  --portfolio-accent: #9f6444;
+  --portfolio-accent-strong: #be805f;
+  --portfolio-card: #f3e6d7;
+  --portfolio-field: #e8d9c8;
+  --portfolio-surface-deep: #dcc9b4;
+  --portfolio-chip: #a98466;
+  --portfolio-edge: rgb(176 143 115 / 45%);
+  --portfolio-bg-gradient: #f1e4d5;
+  --portfolio-shell-gradient: #f7ebdd;
+  --portfolio-section-alt: #eedfce;
+  --portfolio-panel-sheen: none;
+  --portfolio-on-accent: #fffaf6;
 }
 
 .dark {
-  --portfolio-bg: #1d1612;
-  --portfolio-surface: #2b211b;
-  --portfolio-surface-alt: #362920;
-  --portfolio-line: #8a6d56;
-  --portfolio-line-soft: #a98a71;
-  --portfolio-text: #f3e6d4;
-  --portfolio-muted: #d4bea4;
-  --portfolio-accent: #c98357;
-  --portfolio-accent-strong: #ddb08f;
-  --portfolio-card: #31251d;
-  --portfolio-field: #433226;
-  --portfolio-surface-deep: #4a392d;
-  --portfolio-chip: #8f7259;
-  --portfolio-edge: rgb(169 138 113 / 42%);
-  --portfolio-glow-a: rgb(201 131 87 / 26%);
-  --portfolio-glow-b: rgb(121 106 74 / 24%);
-  --portfolio-bg-gradient: linear-gradient(180deg, #1c1511 0%, #1e1712 40%, #19130f 100%);
-  --portfolio-shell-gradient: linear-gradient(180deg, rgb(255 236 214 / 3%) 0%, rgb(28 20 15 / 10%) 100%);
-  --portfolio-section-alt: linear-gradient(180deg, rgb(255 220 186 / 2%) 0%, rgb(19 13 9 / 14%) 100%);
-  --portfolio-panel-sheen: linear-gradient(180deg, rgb(255 255 255 / 2%), rgb(0 0 0 / 10%));
-  --portfolio-on-accent: #1f1b19;
+  --portfolio-bg: #19130f;
+  --portfolio-surface: #261d17;
+  --portfolio-surface-alt: #30241d;
+  --portfolio-line: #8c6f57;
+  --portfolio-line-soft: #a78a72;
+  --portfolio-text: #efe2cf;
+  --portfolio-muted: #cdb89f;
+  --portfolio-accent: #be7a52;
+  --portfolio-accent-strong: #d7a989;
+  --portfolio-card: #2c211a;
+  --portfolio-field: #3a2c22;
+  --portfolio-surface-deep: #443429;
+  --portfolio-chip: #876a54;
+  --portfolio-edge: rgb(167 136 108 / 42%);
+  --portfolio-bg-gradient: #17110d;
+  --portfolio-shell-gradient: #201812;
+  --portfolio-section-alt: #231a14;
+  --portfolio-panel-sheen: none;
+  --portfolio-on-accent: #201610;
 }
 
 .portfolio-theme {
   min-height: 100vh;
   color: var(--portfolio-text);
-  background:
-    radial-gradient(1200px 700px at 108% -5%, var(--portfolio-glow-a), transparent 56%),
-    radial-gradient(1000px 560px at -10% 18%, var(--portfolio-glow-b), transparent 60%),
-    var(--portfolio-bg-gradient);
+  background: var(--portfolio-bg-gradient);
 }
 
 .portfolio-theme .portfolio-shell {
@@ -186,7 +179,7 @@
   border-right: 1px solid var(--portfolio-edge);
   background-color: var(--portfolio-bg);
   background: var(--portfolio-shell-gradient);
-  box-shadow: 0 28px 80px rgb(7 9 13 / 45%);
+  box-shadow: 0 18px 48px rgb(26 17 12 / 20%);
 }
 
 .portfolio-theme .portfolio-shell > section {
@@ -285,7 +278,7 @@
 .portfolio-theme .px-4.py-2,
 .portfolio-theme .px-4.py-3,
 .portfolio-theme .px-3.py-2 {
-  background-image: var(--portfolio-panel-sheen);
+  background-image: none;
 }
 
 .portfolio-theme .h-8,
@@ -354,11 +347,11 @@
 }
 
 .theme-toggle.is-light {
-  background: linear-gradient(160deg, #f3e7d8 0%, #e7d6c4 100%);
+  background: #e8d9c7;
 }
 
 .theme-toggle.is-dark {
-  background: linear-gradient(160deg, #221915 0%, #2c211b 100%);
+  background: #251c16;
 }
 
 .theme-toggle__icon {
@@ -413,13 +406,13 @@
 }
 
 .theme-toggle.is-light .theme-toggle__thumb {
-  background: linear-gradient(180deg, #fffaf2 0%, #f2e7da 100%);
+  background: #f7eee4;
   color: #2f2219;
   box-shadow: 0 2px 8px rgb(44 31 22 / 24%);
 }
 
 .theme-toggle.is-dark .theme-toggle__thumb {
-  background: linear-gradient(180deg, #403127 0%, #2d2018 100%);
+  background: #3a2c22;
   color: #f4e8d7;
   box-shadow: 0 3px 10px rgb(9 6 4 / 45%);
 }
