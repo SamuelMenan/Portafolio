@@ -21,45 +21,43 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
   const [activeSection, setActiveSection] = useState<string>('about')
 
   useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section))
+    const offset = 120
 
-    if (sections.length === 0) return
+    const updateActiveSection = () => {
+      let current = sectionIds[0]
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+      for (const id of sectionIds) {
+        const section = document.getElementById(id)
+        if (!section) continue
 
-        if (visibleEntry?.target?.id) {
-          setActiveSection(visibleEntry.target.id)
+        const top = section.getBoundingClientRect().top
+        if (top - offset <= 0) {
+          current = id
         }
-      },
-      {
-        root: null,
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.1, 0.2, 0.4, 0.6],
       }
-    )
 
-    sections.forEach((section) => observer.observe(section))
+      setActiveSection(current)
+    }
+
+    updateActiveSection()
+    window.addEventListener('scroll', updateActiveSection, { passive: true })
+    window.addEventListener('resize', updateActiveSection)
 
     return () => {
-      sections.forEach((section) => observer.unobserve(section))
-      observer.disconnect()
+      window.removeEventListener('scroll', updateActiveSection)
+      window.removeEventListener('resize', updateActiveSection)
     }
   }, [sectionIds])
 
   function goToSection(id: string) {
     const section = document.getElementById(id)
     if (!section) return
+    setActiveSection(id)
     section.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <nav className={`wireframe-nav flex items-center justify-between mt-0 ${mobile ? 'py-3' : 'py-4'}`}>
+    <nav className={`wireframe-nav flex items-center justify-between mt-0 ${mobile ? 'py-3 flex-wrap gap-y-2' : 'py-4'}`}>
       <div className="wireframe-nav__brand border border-black px-3 py-1 text-xs font-bold tracking-widest">
         SEMPU
       </div>
@@ -89,7 +87,7 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
       )}
 
       {mobile && (
-        <div className="wireframe-nav__mobile-links pt-3 pb-1 flex items-center gap-3 overflow-x-auto">
+        <div className="wireframe-nav__mobile-links w-full pt-3 pb-1 flex items-center gap-3 overflow-x-auto">
           {labels.map((item, idx) => (
             <button
               key={item}

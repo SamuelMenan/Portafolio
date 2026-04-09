@@ -16,11 +16,12 @@ export default function ThemeSwitch({ compact }: Props) {
   }, [])
 
   const activeTheme = theme === 'system' ? resolvedTheme : theme
-  const isDark = activeTheme === 'dark'
+  const isDark = mounted && activeTheme === 'dark'
 
   return (
     <button
       type="button"
+      disabled={!mounted}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className={`theme-toggle ${isDark ? 'is-dark' : 'is-light'} ${compact ? 'theme-toggle--compact' : ''}`}
       aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
