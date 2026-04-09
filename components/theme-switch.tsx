@@ -22,10 +22,21 @@ export default function ThemeSwitch({ compact }: Props) {
     <button
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={`border border-black px-3 py-1 text-xs tracking-widest uppercase transition-colors duration-200 hover:bg-black/10 ${compact ? '' : 'font-bold'}`}
+      className={`theme-toggle ${isDark ? 'is-dark' : 'is-light'} ${compact ? 'theme-toggle--compact' : ''}`}
       aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+      aria-pressed={isDark}
     >
-      {mounted ? (isDark ? 'MODO CLARO' : 'MODO OSCURO') : 'TEMA'}
+      <span className="theme-toggle__icon theme-toggle__icon--sun material-symbols-rounded" aria-hidden="true">
+        light_mode
+      </span>
+      <span className="theme-toggle__icon theme-toggle__icon--moon material-symbols-rounded" aria-hidden="true">
+        dark_mode
+      </span>
+      <span className="theme-toggle__thumb" aria-hidden="true">
+        <span className="material-symbols-rounded">
+          {mounted ? (isDark ? 'dark_mode' : 'light_mode') : 'contrast'}
+        </span>
+      </span>
     </button>
   )
 }
