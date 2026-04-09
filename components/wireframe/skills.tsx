@@ -9,6 +9,7 @@ import {
   Workflow,
 } from 'lucide-react'
 import {
+  SiDjango,
   SiDocker,
   SiExpress,
   SiFigma,
@@ -19,9 +20,11 @@ import {
   SiMongodb,
   SiMysql,
   SiNodedotjs,
+  SiOpenjdk,
   SiPostgresql,
   SiPostman,
   SiReact,
+  SiRstudioide,
   SiSpringboot,
   SiTailwindcss,
   SiTypescript,
@@ -71,8 +74,9 @@ const skillGroups: SkillGroup[] = [
     categoryEn: 'Backend',
     items: [
       { es: 'Node.js', en: 'Node.js', icon: SiNodedotjs, color: '#5FA04E' },
+      { es: 'Django', en: 'Django', icon: SiDjango, color: '#092E20' },
+      { es: 'Java', en: 'Java', icon: SiOpenjdk, color: '#ED8B00' },
       { es: 'Spring Boot', en: 'Spring Boot', icon: SiSpringboot, color: '#6DB33F' },
-      { es: 'APIs REST', en: 'REST APIs', icon: Workflow, color: '#C6845F' },
       { es: 'PostgreSQL', en: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
       { es: 'MongoDB', en: 'MongoDB', icon: SiMongodb, color: '#47A248' },
       { es: 'MySQL', en: 'MySQL', icon: SiMysql, color: '#4479A1' },
@@ -82,9 +86,9 @@ const skillGroups: SkillGroup[] = [
     categoryEs: 'Herramientas',
     categoryEn: 'Tools',
     items: [
-      { es: 'Git / GitHub', en: 'Git / GitHub', icon: SiGithub, color: '#F05032' },
-      { es: 'Docker', en: 'Docker', icon: SiDocker, color: '#2496ED' },
+      { es: 'Git / GitHub', en: 'Git / GitHub', icon: SiGithub, color: '#F05032' },  
       { es: 'AWS S3', en: 'AWS S3', icon: Cloud, color: '#FF9900' },
+      { es: 'RStudio', en: 'RStudio', icon: SiRstudioide, color: '#75AADB' },
       { es: 'Figma', en: 'Figma', icon: SiFigma, color: '#F24E1E' },
       { es: 'Postman', en: 'Postman', icon: SiPostman, color: '#FF6C37' },
       { es: 'VS Code', en: 'VS Code', icon: Code2, color: '#007ACC' },
@@ -96,7 +100,7 @@ const skillGroups: SkillGroup[] = [
     categoryEn: 'Concepts',
     items: [
       { es: 'Arquitectura C4', en: 'C4 Architecture', icon: Boxes, color: '#B78E6F' },
-      { es: 'RBAC', en: 'RBAC', icon: KeyRound, color: '#B78E6F' },
+      { es: 'Programación Orientada a Objetos', en: 'Object-Oriented Programming', icon: KeyRound, color: '#B78E6F' },
       { es: 'Arquitectura en Capas', en: 'Layered Architecture', icon: Layers3, color: '#B78E6F' },
       { es: 'Diseño de Componentes', en: 'Component Design', icon: Boxes, color: '#B78E6F' },
       { es: 'Diagramas ER', en: 'ER Diagrams', icon: Database, color: '#B78E6F' },
@@ -108,7 +112,7 @@ const skillGroups: SkillGroup[] = [
 
 function renderIcon(Icon: IconComponent, color: string) {
   const SingleIcon = Icon
-  return <SingleIcon className="skill-item__icon" style={{ color }} aria-hidden="true" />
+  return <SingleIcon className="skill-item__icon" style={{ color }} aria-hidden={true} />
 }
 
 export default function WireframeSkills({ mobile, lang }: Props) {
