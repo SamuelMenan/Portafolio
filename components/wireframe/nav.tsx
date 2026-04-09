@@ -19,6 +19,7 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
 
   const sectionIds = useMemo(() => ['about', 'projects', 'skills', 'testimonials', 'contact'], [])
   const [activeSection, setActiveSection] = useState<string>('about')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const offset = 120
@@ -53,8 +54,13 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
     const section = document.getElementById(id)
     if (!section) return
     setActiveSection(id)
+    if (mobile) setMenuOpen(false)
     section.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+
+  useEffect(() => {
+    if (!mobile) setMenuOpen(false)
+  }, [mobile])
 
   return (
     <nav className={`wireframe-nav flex items-center justify-between mt-0 ${mobile ? 'py-3 flex-wrap gap-y-2' : 'py-4'}`}>
@@ -64,7 +70,19 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
       {mobile ? (
         <div className="flex items-center gap-3">
           <LanguageSwitch value={lang} onChange={onLangChange} />
-          <div className="wireframe-nav__menu border border-black px-3 py-1 text-xs">{menuLabel}</div>
+          <button
+            type="button"
+            className="wireframe-nav__menu border border-black px-3 py-1 text-xs"
+            aria-label={menuOpen ? (lang === 'en' ? 'Close menu' : 'Cerrar menú') : (lang === 'en' ? 'Open menu' : 'Abrir menú')}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav-links"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            <span className="wireframe-nav__menu-label">{menuLabel}</span>
+            <span className="material-symbols-rounded wireframe-nav__menu-icon" aria-hidden="true">
+              {menuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
           <ThemeSwitch compact />
         </div>
       ) : (
@@ -87,13 +105,16 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
       )}
 
       {mobile && (
-        <div className="wireframe-nav__mobile-links w-full pt-3 pb-1 flex items-center gap-3 overflow-x-auto">
+        <div
+          id="mobile-nav-links"
+          className={`wireframe-nav__mobile-links w-full ${menuOpen ? 'is-open' : 'is-closed'}`}
+        >
           {labels.map((item, idx) => (
             <button
               key={item}
               type="button"
               onClick={() => goToSection(sectionIds[idx])}
-              className={`wireframe-nav__link wireframe-nav__link--mobile border-b-2 border-black pb-0.5 whitespace-nowrap ${activeSection === sectionIds[idx] ? 'is-active' : ''}`}
+              className={`wireframe-nav__link wireframe-nav__link--mobile border-b-2 border-black pb-0.5 ${activeSection === sectionIds[idx] ? 'is-active' : ''}`}
             >
               {item.toUpperCase()}
             </button>

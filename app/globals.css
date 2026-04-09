@@ -346,6 +346,14 @@
   padding-right: 0.9rem;
 }
 
+.wireframe-nav__menu {
+  gap: 0.25rem;
+}
+
+.wireframe-nav__menu-icon {
+  font-size: 0.95rem;
+}
+
 .wireframe-nav__links {
   align-items: center;
 }
@@ -393,12 +401,42 @@
 }
 
 .wireframe-nav__mobile-links {
+  overflow: hidden;
+  display: grid;
+  gap: 0.45rem;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: max-height 220ms ease, opacity 200ms ease, transform 200ms ease;
   background: color-mix(in oklab, var(--portfolio-bg) 94%, transparent);
+  border-top: 1px dashed color-mix(in oklab, var(--portfolio-line) 45%, transparent);
+  margin-top: 0.35rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.wireframe-nav__mobile-links.is-open {
+  max-height: 16rem;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  padding-top: 0.65rem;
+  padding-bottom: 0.35rem;
+}
+
+.wireframe-nav__mobile-links.is-closed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .wireframe-nav__link--mobile {
   font-size: 0.64rem;
   letter-spacing: 0.13em;
+  width: fit-content;
 }
 
 .wireframe-nav__link--mobile::after {
