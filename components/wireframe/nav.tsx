@@ -1,3 +1,5 @@
+import ThemeSwitch from '@/components/theme-switch'
+
 interface Props { mobile?: boolean }
 
 export default function WireframeNav({ mobile }: Props) {
@@ -7,14 +9,20 @@ export default function WireframeNav({ mobile }: Props) {
         SEMPU
       </div>
       {mobile ? (
-        <div className="border border-black px-3 py-1 text-xs">☰ MENÚ</div>
+        <div className="flex items-center gap-2">
+          <div className="border border-black px-3 py-1 text-xs">MENU</div>
+          <ThemeSwitch compact />
+        </div>
       ) : (
-        <div className="flex gap-6 text-xs tracking-widest">
-          {["Sobre Mí", "Proyectos", "Habilidades", "Testimonios", "Contacto"].map((item) => (
-            <div key={item} className="border-b-2 border-black pb-0.5 cursor-pointer">
-              {item.toUpperCase()}
-            </div>
-          ))}
+        <div className="flex items-center gap-6 text-xs tracking-widest">
+          <div className="flex gap-6">
+            {["Sobre Mí", "Proyectos", "Habilidades", "Testimonios", "Contacto"].map((item) => (
+              <div key={item} className="border-b-2 border-black pb-0.5 cursor-pointer">
+                {item.toUpperCase()}
+              </div>
+            ))}
+          </div>
+          <ThemeSwitch />
         </div>
       )}
     </nav>
