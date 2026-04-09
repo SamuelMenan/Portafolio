@@ -18,7 +18,7 @@ export default function WireframeHero({ mobile, lang }: Props) {
           focus: 'Focus',
           frontend: 'Frontend Development',
           location: 'Location',
-          country: 'Ecuador',
+          country: 'Colombia',
         }
       : {
           role: 'Estudiante de Ingeniería de Software enfocado en Frontend',
@@ -32,7 +32,7 @@ export default function WireframeHero({ mobile, lang }: Props) {
           focus: 'Enfoque',
           frontend: 'Desarrollo Frontend',
           location: 'Ubicación',
-          country: 'Ecuador',
+          country: 'Colombia',
         }
 
   return (
