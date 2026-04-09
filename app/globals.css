@@ -443,6 +443,25 @@
   bottom: -0.12rem;
 }
 
+.skill-group-card {
+  background: color-mix(in oklab, var(--portfolio-card) 88%, transparent);
+}
+
+.skill-item {
+  border-radius: 0.8rem;
+  background: color-mix(in oklab, var(--portfolio-bg) 24%, var(--portfolio-card));
+}
+
+.skill-item__icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.skill-item__label {
+  line-height: 1.1;
+}
+
 .language-switch {
   display: inline-flex;
   align-items: center;
