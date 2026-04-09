@@ -75,8 +75,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -130,8 +130,8 @@
   --portfolio-surface-alt: #e8d8c6;
   --portfolio-line: #b39377;
   --portfolio-line-soft: #c4a78b;
-  --portfolio-text: #3a2a1f;
-  --portfolio-muted: #6b5543;
+  --portfolio-text: #4a382b;
+  --portfolio-muted: #755f4d;
   --portfolio-accent: #9f6444;
   --portfolio-accent-strong: #be805f;
   --portfolio-card: #f3e6d7;
@@ -152,8 +152,8 @@
   --portfolio-surface-alt: #30241d;
   --portfolio-line: #8c6f57;
   --portfolio-line-soft: #a78a72;
-  --portfolio-text: #efe2cf;
-  --portfolio-muted: #cdb89f;
+  --portfolio-text: #e6d7c1;
+  --portfolio-muted: #bca890;
   --portfolio-accent: #be7a52;
   --portfolio-accent-strong: #d7a989;
   --portfolio-card: #2c211a;
@@ -173,6 +173,7 @@
   color: var(--portfolio-text);
   background: var(--portfolio-bg-gradient);
   overflow-x: clip;
+  font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .portfolio-theme .portfolio-shell {
@@ -252,6 +253,21 @@
 .portfolio-theme .text-gray-500,
 .portfolio-theme .text-gray-400 {
   color: var(--portfolio-muted) !important;
+}
+
+.portfolio-theme h1,
+.portfolio-theme h2,
+.portfolio-theme h3,
+.portfolio-theme h4,
+.portfolio-theme .font-bold {
+  letter-spacing: 0.01em;
+}
+
+.portfolio-theme p,
+.portfolio-theme span,
+.portfolio-theme button,
+.portfolio-theme li {
+  text-wrap: pretty;
 }
 
 .portfolio-theme .text-xs.text-gray-500.uppercase,
