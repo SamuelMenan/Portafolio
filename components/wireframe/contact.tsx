@@ -36,7 +36,7 @@ export default function WireframeContact({ mobile, lang }: Props) {
         }
 
   return (
-    <section className={`py-12 ${mobile ? "py-8" : ""}`}>
+    <section id="contact" className={`py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
       <div className="flex items-center gap-4 mb-8">
         <span className="text-xs tracking-widest uppercase font-bold">{copy.section}</span>

@@ -46,7 +46,7 @@ export default function WireframeSkills({ mobile, lang }: Props) {
       : skillGroups
 
   return (
-    <section className={`border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
+    <section id="skills" className={`border-b-2 border-black py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
       <div className="flex items-center gap-4 mb-8">
         <span className="text-xs tracking-widest uppercase font-bold">{lang === 'en' ? '04 - Skills' : '04 - Habilidades'}</span>

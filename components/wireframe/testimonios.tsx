@@ -98,7 +98,7 @@ export default function WireframeTestimonios({ mobile, lang }: Props) {
         }
 
   return (
-    <section className={`border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
+    <section id="testimonials" className={`border-b-2 border-black py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
       <div className="flex items-center gap-4 mb-5">
         <span className="text-xs tracking-widest uppercase font-bold">{copy.section}</span>
         <div className="flex-1 border-t border-black" />

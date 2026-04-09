@@ -345,11 +345,54 @@
 }
 
 .wireframe-nav__link {
+  position: relative;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
-  border-bottom-width: 1px;
+  border-bottom-width: 0;
+  transition: color 180ms ease;
+}
+
+.wireframe-nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0.28rem;
+  right: 0.28rem;
+  bottom: -0.18rem;
+  height: 1px;
+  background: var(--portfolio-line);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 220ms ease;
+}
+
+.wireframe-nav__link:hover::after,
+.wireframe-nav__link.is-active::after {
+  transform: scaleX(1);
+}
+
+.wireframe-nav__link.is-active {
+  color: var(--portfolio-accent);
+}
+
+.wireframe-nav__link:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--portfolio-accent) 70%, #ffffff 30%);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.wireframe-nav__mobile-links::-webkit-scrollbar {
+  height: 0;
+}
+
+.wireframe-nav__link--mobile {
+  font-size: 0.64rem;
+  letter-spacing: 0.13em;
+}
+
+.wireframe-nav__link--mobile::after {
+  bottom: -0.12rem;
 }
 
 .language-switch {
