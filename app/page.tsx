@@ -8,10 +8,10 @@ import WireframeContact from "@/components/wireframe/contact"
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white font-mono text-black">
+    <div className="portfolio-theme min-h-screen">
       {/* DESKTOP VIEW */}
-      <section className="hidden border-b-4 border-black lg:block">
-        <div className="max-w-[1100px] mx-auto px-8 pb-16">
+      <section className="hidden lg:block">
+        <div className="portfolio-shell max-w-[1100px] mx-auto px-8 pb-16">
           <WireframeNav />
           <WireframeHero />
           <WireframeAbout />
@@ -24,7 +24,7 @@ export default function Page() {
 
       {/* MOBILE VIEW */}
       <section className="lg:hidden">
-        <div className="max-w-[390px] mx-auto px-4 pb-16 border-x-2 border-dashed border-gray-400">
+        <div className="portfolio-shell portfolio-shell-mobile max-w-[390px] mx-auto px-4 pb-16">
           <WireframeNav mobile />
           <WireframeHero mobile />
           <WireframeAbout mobile />
