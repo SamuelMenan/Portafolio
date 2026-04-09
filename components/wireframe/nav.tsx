@@ -15,6 +15,7 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
     lang === 'en'
       ? ['About Me', 'Projects', 'Skills', 'Testimonials', 'Contact']
       : ['Sobre Mí', 'Proyectos', 'Habilidades', 'Testimonios', 'Contacto']
+  const menuLabel = lang === 'en' ? 'MENU' : 'MENÚ'
 
   const sectionIds = useMemo(() => ['about', 'projects', 'skills', 'testimonials', 'contact'], [])
   const [activeSection, setActiveSection] = useState<string>('about')
@@ -65,7 +66,7 @@ export default function WireframeNav({ mobile, lang, onLangChange }: Props) {
       {mobile ? (
         <div className="flex items-center gap-3">
           <LanguageSwitch value={lang} onChange={onLangChange} />
-          <div className="wireframe-nav__menu border border-black px-3 py-1 text-xs">MENU</div>
+          <div className="wireframe-nav__menu border border-black px-3 py-1 text-xs">{menuLabel}</div>
           <ThemeSwitch compact />
         </div>
       ) : (

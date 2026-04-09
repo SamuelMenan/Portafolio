@@ -314,6 +314,11 @@
 
 .wireframe-nav {
   position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in oklab, var(--portfolio-bg) 92%, transparent);
+  backdrop-filter: saturate(1.1) blur(6px);
 }
 
 .wireframe-nav::after {
@@ -384,6 +389,10 @@
 
 .wireframe-nav__mobile-links::-webkit-scrollbar {
   height: 0;
+}
+
+.wireframe-nav__mobile-links {
+  background: color-mix(in oklab, var(--portfolio-bg) 94%, transparent);
 }
 
 .wireframe-nav__link--mobile {
