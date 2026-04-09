@@ -1,6 +1,9 @@
 import WireframeProcess from "@/components/wireframe/process"
 
-interface Props { mobile?: boolean }
+interface Props {
+  mobile?: boolean
+  lang: 'es' | 'en'
+}
 
 const projects = [
   {
@@ -50,18 +53,92 @@ const projects = [
   },
 ]
 
-export default function WireframeProjects({ mobile }: Props) {
+export default function WireframeProjects({ mobile, lang }: Props) {
+  const copy =
+    lang === 'en'
+      ? {
+          section: '03 - Projects',
+          meta: '5 case studies + process',
+          description: 'Description',
+          problem: 'Problem Solved',
+          approach: 'Technical Approach',
+          keyDecision: 'Key Decision',
+          technologies: 'Technologies',
+          caseStudy: '[ VIEW CASE STUDY ]',
+        }
+      : {
+          section: '03 - Proyectos',
+          meta: '5 casos de estudio + proceso',
+          description: 'Descripción',
+          problem: 'Problema Resuelto',
+          approach: 'Enfoque Técnico',
+          keyDecision: 'Decisión Clave',
+          technologies: 'Tecnologías',
+          caseStudy: '[ VER ESTUDIO DE CASO ]',
+        }
+
+  const localizedProjects =
+    lang === 'en'
+      ? [
+          {
+            title: 'AlmasEnAccion',
+            type: 'Frontend',
+            description: 'Web platform for discovering and interacting with social initiatives, focused on visibility and community engagement.',
+            problem: 'Small social initiatives have low exposure and lack structured digital tools to connect with users.',
+            approach: 'Component-based SPA architecture focused on modularity and scalability. Decoupled REST API consumption.',
+            technologies: ['JavaScript', 'HTML5 + CSS3', 'Component Architecture', 'REST Integration'],
+            keyDecision: 'Clear separation between presentation layer and data logic (frontend-backend decoupling). Dynamic rendering for evolving content.',
+          },
+          {
+            title: 'AlmasEnAccionBackend',
+            type: 'Backend',
+            description: 'REST API that supports the business logic of the platform, managing users, initiatives, and data persistence.',
+            problem: 'Centralizes business logic and enables scaling while maintaining data consistency and secure operations.',
+            approach: 'REST architecture for easy integrations. Layered separation (routes, controllers, models) for maintainability.',
+            technologies: ['Node.js', 'Express', 'Database', 'REST Architecture'],
+            keyDecision: 'REST-first design for multi-client integration. Layered separation to improve maintainability and scalability.',
+          },
+          {
+            title: 'Colegio Mentes Creativas',
+            type: 'Full-Stack',
+            description: 'Academic management web system to manage students, courses, and educational processes.',
+            problem: 'Reduces dependence on manual workflows and improves data organization in educational settings.',
+            approach: 'Implemented full CRUD features for academic data management. Designed user-friendly interfaces for non-technical users.',
+            technologies: ['JavaScript', 'HTML + CSS', 'Structured CRUD', 'Database'],
+            keyDecision: 'Data normalization to avoid redundancy. Simple interfaces to reduce user learning curve.',
+          },
+          {
+            title: 'PlayTubeMusic',
+            type: 'Frontend',
+            description: 'Web app for multimedia playback, integrating external sources for music consumption.',
+            problem: 'Centralizes multimedia access into a more controlled and customizable experience than traditional platforms.',
+            approach: 'Implemented browser-based playback logic. Integrated external APIs for dynamic content retrieval.',
+            technologies: ['JavaScript', 'External APIs', 'HTML5 + CSS3', 'Event Handling'],
+            keyDecision: 'Use external APIs to avoid redundant storage. Efficient state handling to prevent inconsistencies.',
+          },
+          {
+            title: 'PlayTubeMusicBackend',
+            type: 'Backend',
+            description: 'Backend that manages users, preferences, and persistent data for the multimedia app.',
+            problem: 'Enables personalization (playlists, history, users) that is not possible using external APIs alone.',
+            approach: 'Designed endpoints for user and custom data management. Implemented persistence logic for playlists and history.',
+            technologies: ['Node.js', 'Express', 'Database', 'REST API'],
+            keyDecision: 'Separation between external data (API) and internal data (users). Endpoint design focused on low coupling.',
+          },
+        ]
+      : projects
+
   return (
     <section className={`border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
       <div className="flex items-center gap-4 mb-8">
-        <span className="text-xs tracking-widest uppercase font-bold">03 — Proyectos</span>
+        <span className="text-xs tracking-widest uppercase font-bold">{copy.section}</span>
         <div className="flex-1 border-t border-black" />
-        <span className="text-xs text-gray-500">5 casos de estudio + proceso</span>
+        <span className="text-xs text-gray-500">{copy.meta}</span>
       </div>
 
       <div className="flex flex-col gap-6">
-        {projects.map((project, i) => (
+        {localizedProjects.map((project, i) => (
           <div key={project.title} className="border-2 border-black">
             {/* Project header bar */}
             <div className="border-b-2 border-black px-4 py-2 flex items-center justify-between bg-gray-100">
@@ -75,23 +152,23 @@ export default function WireframeProjects({ mobile }: Props) {
             <div className={`grid gap-0 ${mobile ? "grid-cols-1" : "grid-cols-[2fr_1fr_1fr]"}`}>
               {/* Description + Problem */}
               <div className={`p-4 ${!mobile ? "border-r-2 border-black" : "border-b-2 border-black"}`}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">Descripción</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">{copy.description}</p>
                 <p className="text-sm text-gray-800 leading-relaxed mb-3">{project.description}</p>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">Problema Resuelto</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">{copy.problem}</p>
                 <p className="text-sm text-gray-700 leading-relaxed">{project.problem}</p>
               </div>
 
               {/* Technical approach */}
               <div className={`p-4 ${!mobile ? "border-r-2 border-black" : "border-b-2 border-black"}`}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">Enfoque Técnico</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">{copy.approach}</p>
                 <p className="text-sm text-gray-700 leading-relaxed mb-3">{project.approach}</p>
-                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">Decisión Clave</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">{copy.keyDecision}</p>
                 <p className="text-sm text-gray-700 leading-relaxed">{project.keyDecision}</p>
               </div>
 
               {/* Technologies */}
               <div className="p-4">
-                <p className="text-xs font-bold uppercase tracking-widest mb-2 text-gray-500">Tecnologías</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-2 text-gray-500">{copy.technologies}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span key={tech} className="border border-black text-xs px-2 py-0.5">{tech}</span>
@@ -99,7 +176,7 @@ export default function WireframeProjects({ mobile }: Props) {
                 </div>
                 <div className="mt-4 border-t border-gray-300 pt-3">
                   <div className="border-2 border-dashed border-gray-400 text-center py-2 text-xs text-gray-400 tracking-widest">
-                    [ VER ESTUDIO DE CASO ]
+                    {copy.caseStudy}
                   </div>
                 </div>
               </div>
@@ -109,7 +186,7 @@ export default function WireframeProjects({ mobile }: Props) {
       </div>
 
       <div className="mt-8 border-t-2 border-black pt-6">
-        <WireframeProcess mobile={mobile} embedded />
+        <WireframeProcess mobile={mobile} embedded lang={lang} />
       </div>
     </section>
   )

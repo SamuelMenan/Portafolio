@@ -1,4 +1,7 @@
-interface Props { mobile?: boolean }
+interface Props {
+  mobile?: boolean
+  lang: 'es' | 'en'
+}
 
 const skillGroups = [
   {
@@ -19,17 +22,39 @@ const skillGroups = [
   },
 ]
 
-export default function WireframeSkills({ mobile }: Props) {
+export default function WireframeSkills({ mobile, lang }: Props) {
+  const localizedSkillGroups =
+    lang === 'en'
+      ? [
+          {
+            category: 'Frontend',
+            items: ['React', 'JavaScript', 'TypeScript', 'TailwindCSS', 'HTML5 / CSS3', 'SPA Architecture', 'Vite'],
+          },
+          {
+            category: 'Backend',
+            items: ['Node.js', 'Express', 'Spring Boot', 'REST APIs', 'JWT Auth', 'PostgreSQL', 'MongoDB', 'MySQL'],
+          },
+          {
+            category: 'Tools',
+            items: ['Git / GitHub', 'Docker', 'AWS S3', 'Figma', 'Postman', 'VS Code', 'IntelliJ IDEA'],
+          },
+          {
+            category: 'Concepts',
+            items: ['C4 Architecture', 'RBAC', 'Layered Architecture', 'Component Design', 'ER Diagrams', 'UML / Flows', 'Clean Code'],
+          },
+        ]
+      : skillGroups
+
   return (
     <section className={`border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
       <div className="flex items-center gap-4 mb-8">
-        <span className="text-xs tracking-widest uppercase font-bold">04 — Habilidades</span>
+        <span className="text-xs tracking-widest uppercase font-bold">{lang === 'en' ? '04 - Skills' : '04 - Habilidades'}</span>
         <div className="flex-1 border-t border-black" />
       </div>
 
       <div className={`grid gap-4 ${mobile ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-4"}`}>
-        {skillGroups.map((group) => (
+        {localizedSkillGroups.map((group) => (
           <div key={group.category} className="border-2 border-black">
             {/* Group label */}
             <div className="border-b-2 border-black px-4 py-2 bg-gray-100">

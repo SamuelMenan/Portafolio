@@ -1,6 +1,7 @@
 interface Props {
   mobile?: boolean
   embedded?: boolean
+  lang: 'es' | 'en'
 }
 
 const steps = [
@@ -36,18 +37,85 @@ const steps = [
   },
 ]
 
-export default function WireframeProcess({ mobile, embedded }: Props) {
+export default function WireframeProcess({ mobile, embedded, lang }: Props) {
+  const localizedSteps =
+    lang === 'en'
+      ? [
+          {
+            step: '01',
+            label: 'Requirements Gathering',
+            detail: 'Functional and non-functional requirements. Stakeholder interviews. User stories.',
+            artifact: '[ Requirements Document ]',
+          },
+          {
+            step: '02',
+            label: 'System Design',
+            detail: 'C4 context + container diagrams. ER diagrams. API contract definition.',
+            artifact: '[ C4 Diagram ]',
+          },
+          {
+            step: '03',
+            label: 'Architecture Decisions',
+            detail: 'Tech stack selection. Layered or modular structure. Dependency mapping.',
+            artifact: '[ ADR / Architecture Draft ]',
+          },
+          {
+            step: '04',
+            label: 'Implementation',
+            detail: 'Iterative development. Component-first frontend. Service-first backend.',
+            artifact: '[ Code Structure Diagram ]',
+          },
+          {
+            step: '05',
+            label: 'Review and Refactoring',
+            detail: 'Code review against initial design. Consistency checks. Documentation.',
+            artifact: '[ Checklist ]',
+          },
+        ]
+      : steps
+
+  const copy =
+    lang === 'en'
+      ? {
+          embeddedHeader: 'Process applied to projects',
+          sectionHeader: '05 - Architecture / Process',
+          philosophy: 'Design Philosophy',
+          philosophyBody:
+            'Systems are designed before they are built. Every architectural decision is deliberate, documented, and traceable to a requirement.',
+          artifacts: 'Diagram Artifacts Used',
+          artifactList: [
+            'C4 Model (Context, Container)',
+            'ER / Database Diagrams',
+            'UML Sequence Diagrams',
+            'Component Flow Diagrams',
+          ],
+        }
+      : {
+          embeddedHeader: 'Proceso aplicado a los proyectos',
+          sectionHeader: '05 - Arquitectura / Proceso',
+          philosophy: 'Filosofía de Diseño',
+          philosophyBody:
+            'Los sistemas se diseñan antes de que se construyan. Cada decisión arquitectónica es deliberada, documentada y trazable hacia un requisito.',
+          artifacts: 'Artefactos de Diagramas Usados',
+          artifactList: [
+            'Modelo C4 (Contexto, Contenedor)',
+            'Diagramas ER / Base de Datos',
+            'Diagramas de Secuencia UML',
+            'Diagramas de Flujo de Componentes',
+          ],
+        }
+
   return (
     <section className={embedded ? `${mobile ? "pt-6" : "pt-8"}` : `border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
       {embedded ? (
         <div className="flex items-center gap-4 mb-8">
-          <span className="text-xs tracking-widest uppercase font-bold">Proceso aplicado a los proyectos</span>
+          <span className="text-xs tracking-widest uppercase font-bold">{copy.embeddedHeader}</span>
           <div className="flex-1 border-t border-black" />
         </div>
       ) : (
         <div className="flex items-center gap-4 mb-8">
-          <span className="text-xs tracking-widest uppercase font-bold">05 — Arquitectura / Proceso</span>
+          <span className="text-xs tracking-widest uppercase font-bold">{copy.sectionHeader}</span>
           <div className="flex-1 border-t border-black" />
         </div>
       )}
@@ -57,15 +125,14 @@ export default function WireframeProcess({ mobile, embedded }: Props) {
         {/* Left: Philosophy block */}
         <div className="flex flex-col gap-4">
           <div className="border-2 border-black p-4">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">Filosofía de Diseño</p>
+            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">{copy.philosophy}</p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              Los sistemas se diseñan antes de que se construyan. Cada decisión arquitectónica es deliberada,
-              documentada y trazable hacia un requisito.
+              {copy.philosophyBody}
             </p>
           </div>
           <div className="border-2 border-dashed border-gray-400 p-4 flex flex-col gap-3">
-            <p className="text-xs font-bold uppercase tracking-widest text-gray-500">Artefactos de Diagramas Usados</p>
-            {["Modelo C4 (Contexto, Contenedor)", "Diagramas ER / Base de Datos", "Diagramas de Secuencia UML", "Diagramas de Flujo de Componentes"].map((d) => (
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-500">{copy.artifacts}</p>
+            {copy.artifactList.map((d) => (
               <div key={d} className="border border-gray-300 px-3 py-1.5 text-xs flex items-center gap-2">
                 <div className="w-2 h-2 border border-gray-400 bg-gray-200 shrink-0" />
                 {d}
@@ -76,7 +143,7 @@ export default function WireframeProcess({ mobile, embedded }: Props) {
 
         {/* Right: Process steps */}
         <div className="flex flex-col gap-0">
-          {steps.map((s, i) => (
+          {localizedSteps.map((s, i) => (
             <div
               key={s.step}
               className={`border-l-4 border-l-black border-t border-t-gray-300 ${mobile ? "pl-4 py-3" : "pl-6 py-4"} ${i === 0 ? "border-t-0" : ""}`}
