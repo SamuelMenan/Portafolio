@@ -146,14 +146,14 @@ export default function WireframeProcess({ mobile, embedded, lang }: Props) {
           {localizedSteps.map((s, i) => (
             <div
               key={s.step}
-              className={`border-l-4 border-l-black border-t border-t-gray-300 ${mobile ? "pl-4 py-3" : "pl-6 py-4"} ${i === 0 ? "border-t-0" : ""}`}
+              className={`process-step-row border-l-4 border-l-black border-t border-t-gray-300 ${mobile ? "pl-4 py-3" : "pl-6 py-4"} ${i === 0 ? "border-t-0" : ""}`}
             >
               <div className="flex items-start gap-4">
-                <span className="text-2xl font-bold text-gray-200 leading-none select-none">{s.step}</span>
+                <span className="process-step-number text-2xl font-bold text-gray-200 leading-none select-none">{s.step}</span>
                 <div className="flex-1">
                   <p className="text-sm font-bold tracking-wide mb-1">{s.label}</p>
-                  <p className="text-xs text-gray-600 leading-relaxed mb-2">{s.detail}</p>
-                  <div className="border border-dashed border-gray-400 text-xs text-gray-400 px-3 py-1.5 inline-block">
+                  <p className="process-step-detail text-xs text-gray-600 leading-relaxed mb-2">{s.detail}</p>
+                  <div className="process-step-artifact border border-dashed border-gray-400 text-xs text-gray-400 px-3 py-1.5 inline-block">
                     {s.artifact}
                   </div>
                 </div>

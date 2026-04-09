@@ -478,6 +478,34 @@
   line-height: 1.1;
 }
 
+.process-step-row {
+  border-top-color: color-mix(in oklab, var(--portfolio-line-soft) 45%, transparent) !important;
+}
+
+.process-step-number {
+  color: color-mix(in oklab, var(--portfolio-accent) 62%, #d6c2ad 38%) !important;
+  min-width: 2.3rem;
+  opacity: 0.95;
+}
+
+.process-step-detail {
+  color: color-mix(in oklab, var(--portfolio-muted) 88%, var(--portfolio-text) 12%) !important;
+}
+
+.process-step-artifact {
+  color: color-mix(in oklab, var(--portfolio-muted) 92%, var(--portfolio-text) 8%) !important;
+  border-color: color-mix(in oklab, var(--portfolio-line-soft) 52%, transparent) !important;
+}
+
+.dark .process-step-number {
+  color: color-mix(in oklab, var(--portfolio-accent-strong) 72%, #f0d6ba 28%) !important;
+}
+
+.dark .process-step-detail,
+.dark .process-step-artifact {
+  color: color-mix(in oklab, var(--portfolio-muted) 86%, #f2e2ce 14%) !important;
+}
+
 .language-switch {
   display: inline-flex;
   align-items: center;
