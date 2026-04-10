@@ -1,3 +1,5 @@
+"use client"
+
 interface Props {
   mobile?: boolean
   lang: 'es' | 'en'
@@ -35,6 +37,18 @@ export default function HeroSection({ mobile, lang }: Props) {
           country: 'Colombia',
         }
 
+  function goToProjects() {
+    const candidates = Array.from(document.querySelectorAll<HTMLElement>('section#projects'))
+    const visibleSection =
+      candidates.find((section) => {
+        const rect = section.getBoundingClientRect()
+        return rect.width > 0 && rect.height > 0 && window.getComputedStyle(section).display !== 'none'
+      }) ?? null
+
+    if (!visibleSection) return
+    visibleSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <section className={`border-b-2 border-black py-12 ${mobile ? "py-8" : ""}`}>
       <div className={`grid gap-8 ${mobile ? "grid-cols-1" : "grid-cols-[2fr_1fr] items-end"}`}>
@@ -62,9 +76,13 @@ export default function HeroSection({ mobile, lang }: Props) {
 
           {/* CTA */}
           <div className="flex gap-4 flex-wrap">
-            <div className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase bg-black text-white w-fit">
+            <button
+              type="button"
+              onClick={goToProjects}
+              className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase bg-black text-white w-fit cursor-pointer"
+            >
               {copy.viewProjects}
-            </div>
+            </button>
             <div className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase w-fit">
               {copy.downloadCV}
             </div>
