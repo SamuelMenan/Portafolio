@@ -10,6 +10,7 @@ interface Props {
 export default function ThemeSwitch({ compact }: Props) {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [loadingTheme, setLoadingTheme] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -18,12 +19,22 @@ export default function ThemeSwitch({ compact }: Props) {
   const activeTheme = theme === 'system' ? resolvedTheme : theme
   const isDark = mounted && activeTheme === 'dark'
 
+  function handleToggleTheme() {
+    if (!mounted || loadingTheme) return
+
+    setLoadingTheme(true)
+    setTheme(isDark ? 'light' : 'dark')
+    window.setTimeout(() => setLoadingTheme(false), 420)
+  }
+
   return (
     <button
       type="button"
-      disabled={!mounted}
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={`theme-toggle ${isDark ? 'is-dark' : 'is-light'} ${compact ? 'theme-toggle--compact' : ''}`}
+      disabled={!mounted || loadingTheme}
+      data-loading={loadingTheme}
+      aria-busy={loadingTheme}
+      onClick={handleToggleTheme}
+      className={`portfolio-action portfolio-action--ghost theme-toggle ${isDark ? 'is-dark' : 'is-light'} ${compact ? 'theme-toggle--compact' : ''}`}
       aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
       aria-pressed={isDark}
     >
@@ -37,6 +48,9 @@ export default function ThemeSwitch({ compact }: Props) {
         <span className="material-symbols-rounded">
           {mounted ? (isDark ? 'dark_mode' : 'light_mode') : 'contrast'}
         </span>
+      </span>
+      <span className="theme-toggle__loading" aria-hidden="true">
+        <span className="portfolio-action__spinner" />
       </span>
     </button>
   )

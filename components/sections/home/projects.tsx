@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from 'react'
 import ProcessSection from "./process"
 
 interface Props {
@@ -109,6 +112,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           repository: '[ VIEW REPOSITORY ]',
           page: '[ VIEW LIVE PAGE ]',
           pendingRepository: '[ PASTE REPOSITORY LINK ]',
+          loading: '[ LOADING... ]',
         }
       : {
           section: '03 - Proyectos',
@@ -121,6 +125,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           repository: '[ VER REPOSITORIO ]',
           page: '[ VER PÁGINA ]',
           pendingRepository: '[ PEGAR LINK REPOSITORIO ]',
+          loading: '[ CARGANDO... ]',
         }
 
   const localizedProjectGroups: ProjectGroup[] =
@@ -213,6 +218,16 @@ export default function ProjectsSection({ mobile, lang }: Props) {
   const previewViewportWidth = 1280
   const previewViewportHeight = 720
   const previewScale = 0.33
+  const [loadingAction, setLoadingAction] = useState<string | null>(null)
+
+  function triggerLoadingFeedback(actionId: string) {
+    if (loadingAction === actionId) return
+
+    setLoadingAction(actionId)
+    window.setTimeout(() => {
+      setLoadingAction((prev) => (prev === actionId ? null : prev))
+    }, 900)
+  }
 
   return (
     <section id="projects" className={`border-b-2 border-black py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
@@ -230,7 +245,11 @@ export default function ProjectsSection({ mobile, lang }: Props) {
 
             <div className="border-2 border-black p-2">
               <div className="flex flex-col gap-4">
-                {group.modules.map((module) => (
+                {group.modules.map((module, moduleIndex) => {
+                  const repoActionId = `${group.title}-${module.title}-${moduleIndex}-repo`
+                  const pageActionId = `${group.title}-${module.title}-${moduleIndex}-page`
+
+                  return (
                   <div key={module.title} className="border-2 border-black">
                     <div className="border-b-2 border-black px-4 py-2 flex items-center justify-between bg-gray-100">
                       <div className="flex items-center gap-3">
@@ -269,9 +288,16 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                               href={module.repositoryUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                              data-loading={loadingAction === repoActionId}
+                              aria-busy={loadingAction === repoActionId}
+                              onClick={() => triggerLoadingFeedback(repoActionId)}
+                              className="portfolio-action block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
                             >
-                              {copy.repository}
+                              <span className="portfolio-action__content">
+                                <span className="portfolio-action__spinner" aria-hidden="true" />
+                                <span className="portfolio-action__label">{loadingAction === repoActionId ? copy.loading : copy.repository}</span>
+                                <span className="portfolio-action__arrow" aria-hidden="true">→</span>
+                              </span>
                             </a>
                           ) : (
                             <div className="border-2 border-dashed border-gray-400 text-center py-2 text-xs text-gray-400 tracking-widest">
@@ -285,9 +311,16 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                                 href={module.liveUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                                data-loading={loadingAction === pageActionId}
+                                aria-busy={loadingAction === pageActionId}
+                                onClick={() => triggerLoadingFeedback(pageActionId)}
+                                className="portfolio-action block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
                               >
-                                {copy.page}
+                                <span className="portfolio-action__content">
+                                  <span className="portfolio-action__spinner" aria-hidden="true" />
+                                  <span className="portfolio-action__label">{loadingAction === pageActionId ? copy.loading : copy.page}</span>
+                                  <span className="portfolio-action__arrow" aria-hidden="true">→</span>
+                                </span>
                               </a>
                             ) : (
                               <div className="relative group">
@@ -295,9 +328,16 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                                   href={module.liveUrl}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                                  data-loading={loadingAction === pageActionId}
+                                  aria-busy={loadingAction === pageActionId}
+                                  onClick={() => triggerLoadingFeedback(pageActionId)}
+                                  className="portfolio-action block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
                                 >
-                                  {copy.page}
+                                  <span className="portfolio-action__content">
+                                    <span className="portfolio-action__spinner" aria-hidden="true" />
+                                    <span className="portfolio-action__label">{loadingAction === pageActionId ? copy.loading : copy.page}</span>
+                                    <span className="portfolio-action__arrow" aria-hidden="true">→</span>
+                                  </span>
                                 </a>
                                 <div className="pointer-events-none absolute right-0 top-full z-20 mt-2 hidden w-104 border-2 border-black bg-white shadow-lg group-hover:block group-focus-within:block">
                                   <div className="relative h-60 overflow-hidden bg-white">
@@ -321,7 +361,8 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                       </div>
                     </div>
                   </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </div>

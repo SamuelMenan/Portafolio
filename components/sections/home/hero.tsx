@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from 'react'
+
 interface Props {
   mobile?: boolean
   lang: 'es' | 'en'
@@ -21,6 +23,7 @@ export default function HeroSection({ mobile, lang }: Props) {
           frontend: 'Frontend Development',
           location: 'Location',
           country: 'Colombia',
+          loading: '[ LOADING... ]',
         }
       : {
           role: 'Estudiante de Ingeniería de Software enfocado en Frontend',
@@ -35,9 +38,15 @@ export default function HeroSection({ mobile, lang }: Props) {
           frontend: 'Desarrollo Frontend',
           location: 'Ubicación',
           country: 'Colombia',
+          loading: '[ CARGANDO... ]',
         }
 
+  const [loadingProjects, setLoadingProjects] = useState(false)
+
   function goToProjects() {
+    if (loadingProjects) return
+
+    setLoadingProjects(true)
     const candidates = Array.from(document.querySelectorAll<HTMLElement>('section#projects'))
     const visibleSection =
       candidates.find((section) => {
@@ -45,8 +54,13 @@ export default function HeroSection({ mobile, lang }: Props) {
         return rect.width > 0 && rect.height > 0 && window.getComputedStyle(section).display !== 'none'
       }) ?? null
 
-    if (!visibleSection) return
+    if (!visibleSection) {
+      setLoadingProjects(false)
+      return
+    }
+
     visibleSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.setTimeout(() => setLoadingProjects(false), 550)
   }
 
   return (
@@ -79,9 +93,15 @@ export default function HeroSection({ mobile, lang }: Props) {
             <button
               type="button"
               onClick={goToProjects}
-              className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase bg-black text-white w-fit cursor-pointer"
+              data-loading={loadingProjects}
+              aria-busy={loadingProjects}
+              className="portfolio-action border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase bg-black text-white w-fit cursor-pointer"
             >
-              {copy.viewProjects}
+              <span className="portfolio-action__content">
+                <span className="portfolio-action__spinner" aria-hidden="true" />
+                <span className="portfolio-action__label">{loadingProjects ? copy.loading : copy.viewProjects}</span>
+                <span className="portfolio-action__arrow" aria-hidden="true">→</span>
+              </span>
             </button>
             <div className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase w-fit">
               {copy.downloadCV}
