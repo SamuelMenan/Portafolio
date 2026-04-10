@@ -86,8 +86,9 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           approach: 'Technical Approach',
           keyDecision: 'Key Decision',
           technologies: 'Technologies',
-          repository: '[ REPOSITORY ]',
-          page: '[ LIVE PAGE ]',
+          repository: '[ VIEW REPOSITORY ]',
+          page: '[ VIEW LIVE PAGE ]',
+          preview: 'Page Preview',
           pendingRepository: '[ PASTE REPOSITORY LINK ]',
           pendingPage: '[ PASTE PAGE LINK ]',
         }
@@ -99,8 +100,9 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           approach: 'Enfoque Técnico',
           keyDecision: 'Decisión Clave',
           technologies: 'Tecnologías',
-          repository: '[ REPOSITORIO ]',
-          page: '[ PÁGINA ]',
+          repository: '[ VER REPOSITORIO ]',
+          page: '[ VER PÁGINA ]',
+          preview: 'Preview de página',
           pendingRepository: '[ PEGAR LINK REPOSITORIO ]',
           pendingPage: '[ PEGAR LINK PÁGINA ]',
         }
@@ -229,14 +231,27 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                   )}
 
                   {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
-                    >
-                      {copy.page}
-                    </a>
+                    <div className="relative group">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                      >
+                        {copy.page}
+                      </a>
+                      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 hidden w-56 border-2 border-black bg-white shadow-lg group-hover:block group-focus-within:block">
+                        <p className="border-b border-black px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-gray-600">
+                          {copy.preview}
+                        </p>
+                        <iframe
+                          src={project.liveUrl}
+                          title={`${project.title} preview`}
+                          loading="lazy"
+                          className="h-32 w-full"
+                        />
+                      </div>
+                    </div>
                   ) : (
                     <div className="border-2 border-dashed border-gray-400 text-center py-2 text-xs text-gray-400 tracking-widest">
                       {copy.pendingPage}
