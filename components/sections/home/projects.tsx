@@ -5,7 +5,19 @@ interface Props {
   lang: 'es' | 'en'
 }
 
-const projects = [
+interface Project {
+  title: string
+  type: string
+  description: string
+  problem: string
+  approach: string
+  technologies: string[]
+  keyDecision: string
+  repositoryUrl?: string
+  liveUrl?: string
+}
+
+const projects: Project[] = [
   {
     title: "AlmasEnAccion",
     type: "Frontend",
@@ -14,6 +26,8 @@ const projects = [
     approach: "Arquitectura SPA basada en componentes con enfoque en la modularidad y escalabilidad. Consumo de API REST desacoplada.",
     technologies: ["JavaScript", "HTML5 + CSS3", "Arquitectura Componentes", "Integración REST"],
     keyDecision: "Separación clara entre capa de presentación y lógica de datos (desacoplamiento frontend-backend). Renderizado dinámico para contenido cambiante.",
+    repositoryUrl: "https://github.com/SamuelMenan/AlmasEnAccion",
+    liveUrl: "",
   },
   {
     title: "AlmasEnAccionBackend",
@@ -23,6 +37,8 @@ const projects = [
     approach: "Arquitectura REST para facilitar integración. Separación en capas (rutas, controladores, modelos) para mejorar mantenibilidad.",
     technologies: ["Node.js", "Express", "Base de Datos", "Arquitectura REST"],
     keyDecision: "Diseño REST para facilitar integración con múltiples clientes. Separación en capas para mejorar mantenibilidad y escalabilidad.",
+    repositoryUrl: "https://github.com/SamuelMenan/AlmasEnAccionBackend",
+    liveUrl: "",
   },
   {
     title: "Colegio Mentes Creativas",
@@ -32,6 +48,8 @@ const projects = [
     approach: "Implementé funcionalidades CRUD completas para gestión de datos académicos. Diseñé interfaces enfocadas en usabilidad para usuarios no técnicos.",
     technologies: ["JavaScript", "HTML + CSS", "CRUD Estructurado", "Base de Datos"],
     keyDecision: "Normalización de datos para evitar redundancias. Interfaces simples para reducir la curva de aprendizaje del usuario final.",
+    repositoryUrl: "https://github.com/SamuelMenan/Colegio-Mentes-Creativas",
+    liveUrl: "https://colegio-mentes-creativas-puce.vercel.app/",
   },
   {
     title: "PlayTubeMusic",
@@ -41,6 +59,8 @@ const projects = [
     approach: "Implementé lógica de reproducción multimedia en el navegador. Integré APIs externas para obtención dinámica de contenido.",
     technologies: ["JavaScript", "APIs Externas", "HTML5 + CSS3", "Manejo de Eventos"],
     keyDecision: "Uso de APIs externas para evitar almacenamiento redundante de contenido. Manejo eficiente del estado para evitar inconsistencias.",
+    repositoryUrl: "https://github.com/SamuelMenan/PlayTubeMusic",
+    liveUrl: "https://playtubemusic.vercel.app/",
   },
   {
     title: "PlayTubeMusicBackend",
@@ -50,6 +70,8 @@ const projects = [
     approach: "Diseñé endpoints para gestión de usuarios y datos personalizados. Implementé lógica para persistencia de playlists e historial.",
     technologies: ["Node.js", "Express", "Base de Datos", "API REST"],
     keyDecision: "Separación entre datos externos (API) y datos internos (usuarios). Diseño de endpoints enfocados en bajo acoplamiento.",
+    repositoryUrl: "",
+    liveUrl: "",
   },
 ]
 
@@ -64,7 +86,10 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           approach: 'Technical Approach',
           keyDecision: 'Key Decision',
           technologies: 'Technologies',
-          caseStudy: '[ VIEW CASE STUDY ]',
+          repository: '[ REPOSITORY ]',
+          page: '[ LIVE PAGE ]',
+          pendingRepository: '[ PASTE REPOSITORY LINK ]',
+          pendingPage: '[ PASTE PAGE LINK ]',
         }
       : {
           section: '03 - Proyectos',
@@ -74,10 +99,13 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           approach: 'Enfoque Técnico',
           keyDecision: 'Decisión Clave',
           technologies: 'Tecnologías',
-          caseStudy: '[ VER ESTUDIO DE CASO ]',
+          repository: '[ REPOSITORIO ]',
+          page: '[ PÁGINA ]',
+          pendingRepository: '[ PEGAR LINK REPOSITORIO ]',
+          pendingPage: '[ PEGAR LINK PÁGINA ]',
         }
 
-  const localizedProjects =
+  const localizedProjects: Project[] =
     lang === 'en'
       ? [
           {
@@ -88,6 +116,8 @@ export default function ProjectsSection({ mobile, lang }: Props) {
             approach: 'Component-based SPA architecture focused on modularity and scalability. Decoupled REST API consumption.',
             technologies: ['JavaScript', 'HTML5 + CSS3', 'Component Architecture', 'REST Integration'],
             keyDecision: 'Clear separation between presentation layer and data logic (frontend-backend decoupling). Dynamic rendering for evolving content.',
+            repositoryUrl: 'https://github.com/SamuelMenan/AlmasEnAccion',
+            liveUrl: '',
           },
           {
             title: 'AlmasEnAccionBackend',
@@ -97,6 +127,8 @@ export default function ProjectsSection({ mobile, lang }: Props) {
             approach: 'REST architecture for easy integrations. Layered separation (routes, controllers, models) for maintainability.',
             technologies: ['Node.js', 'Express', 'Database', 'REST Architecture'],
             keyDecision: 'REST-first design for multi-client integration. Layered separation to improve maintainability and scalability.',
+            repositoryUrl: 'https://github.com/SamuelMenan/AlmasEnAccionBackend',
+            liveUrl: '',
           },
           {
             title: 'Colegio Mentes Creativas',
@@ -106,6 +138,8 @@ export default function ProjectsSection({ mobile, lang }: Props) {
             approach: 'Implemented full CRUD features for academic data management. Designed user-friendly interfaces for non-technical users.',
             technologies: ['JavaScript', 'HTML + CSS', 'Structured CRUD', 'Database'],
             keyDecision: 'Data normalization to avoid redundancy. Simple interfaces to reduce user learning curve.',
+            repositoryUrl: 'https://github.com/SamuelMenan/Colegio-Mentes-Creativas',
+            liveUrl: 'https://colegio-mentes-creativas-puce.vercel.app/',
           },
           {
             title: 'PlayTubeMusic',
@@ -115,6 +149,8 @@ export default function ProjectsSection({ mobile, lang }: Props) {
             approach: 'Implemented browser-based playback logic. Integrated external APIs for dynamic content retrieval.',
             technologies: ['JavaScript', 'External APIs', 'HTML5 + CSS3', 'Event Handling'],
             keyDecision: 'Use external APIs to avoid redundant storage. Efficient state handling to prevent inconsistencies.',
+            repositoryUrl: 'https://github.com/SamuelMenan/PlayTubeMusic',
+            liveUrl: 'https://playtubemusic.vercel.app/',
           },
           {
             title: 'PlayTubeMusicBackend',
@@ -124,6 +160,8 @@ export default function ProjectsSection({ mobile, lang }: Props) {
             approach: 'Designed endpoints for user and custom data management. Implemented persistence logic for playlists and history.',
             technologies: ['Node.js', 'Express', 'Database', 'REST API'],
             keyDecision: 'Separation between external data (API) and internal data (users). Endpoint design focused on low coupling.',
+            repositoryUrl: '',
+            liveUrl: '',
           },
         ]
       : projects
@@ -174,10 +212,36 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                     <span key={tech} className="border border-black text-xs px-2 py-0.5">{tech}</span>
                   ))}
                 </div>
-                <div className="mt-4 border-t border-gray-300 pt-3">
-                  <div className="border-2 border-dashed border-gray-400 text-center py-2 text-xs text-gray-400 tracking-widest">
-                    {copy.caseStudy}
-                  </div>
+                <div className="mt-4 border-t border-gray-300 pt-3 space-y-2">
+                  {project.repositoryUrl ? (
+                    <a
+                      href={project.repositoryUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                    >
+                      {copy.repository}
+                    </a>
+                  ) : (
+                    <div className="border-2 border-dashed border-gray-400 text-center py-2 text-xs text-gray-400 tracking-widest">
+                      {copy.pendingRepository}
+                    </div>
+                  )}
+
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                    >
+                      {copy.page}
+                    </a>
+                  ) : (
+                    <div className="border-2 border-dashed border-gray-400 text-center py-2 text-xs text-gray-400 tracking-widest">
+                      {copy.pendingPage}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
