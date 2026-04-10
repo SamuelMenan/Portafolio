@@ -88,9 +88,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           technologies: 'Technologies',
           repository: '[ VIEW REPOSITORY ]',
           page: '[ VIEW LIVE PAGE ]',
-          preview: 'Page Preview',
           pendingRepository: '[ PASTE REPOSITORY LINK ]',
-          pendingPage: '[ PASTE PAGE LINK ]',
         }
       : {
           section: '03 - Proyectos',
@@ -102,9 +100,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
           technologies: 'Tecnologías',
           repository: '[ VER REPOSITORIO ]',
           page: '[ VER PÁGINA ]',
-          preview: 'Preview de página',
           pendingRepository: '[ PEGAR LINK REPOSITORIO ]',
-          pendingPage: '[ PEGAR LINK PÁGINA ]',
         }
 
   const localizedProjects: Project[] =
@@ -168,6 +164,10 @@ export default function ProjectsSection({ mobile, lang }: Props) {
         ]
       : projects
 
+  const previewViewportWidth = 1280
+  const previewViewportHeight = 720
+  const previewScale = 0.33
+
   return (
     <section id="projects" className={`border-b-2 border-black py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
@@ -189,7 +189,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
               <span className="border border-black text-xs px-2 py-0.5 font-bold tracking-widest">{project.type.toUpperCase()}</span>
             </div>
 
-            <div className={`grid gap-0 ${mobile ? "grid-cols-1" : "grid-cols-[2fr_1fr_1fr]"}`}>
+            <div className={`grid gap-0 ${mobile ? "grid-cols-1" : "grid-cols-[2fr_1fr_1.3fr]"}`}>
               {/* Description + Problem */}
               <div className={`p-4 ${!mobile ? "border-r-2 border-black" : "border-b-2 border-black"}`}>
                 <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-500">{copy.description}</p>
@@ -231,7 +231,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                   )}
 
                   {project.liveUrl ? (
-                    <div className="relative group">
+                    mobile ? (
                       <a
                         href={project.liveUrl}
                         target="_blank"
@@ -240,23 +240,34 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                       >
                         {copy.page}
                       </a>
-                      <div className="pointer-events-none absolute left-0 top-full z-20 mt-2 hidden w-56 border-2 border-black bg-white shadow-lg group-hover:block group-focus-within:block">
-                        <p className="border-b border-black px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-gray-600">
-                          {copy.preview}
-                        </p>
-                        <iframe
-                          src={project.liveUrl}
-                          title={`${project.title} preview`}
-                          loading="lazy"
-                          className="h-32 w-full"
-                        />
+                    ) : (
+                      <div className="relative group">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                        >
+                          {copy.page}
+                        </a>
+                        <div className="pointer-events-none absolute right-0 top-full z-20 mt-2 hidden w-104 border-2 border-black bg-white shadow-lg group-hover:block group-focus-within:block">
+                          <div className="relative h-60 overflow-hidden bg-white">
+                            <iframe
+                              src={project.liveUrl}
+                              title={`${project.title} preview`}
+                              loading="lazy"
+                              className="absolute left-0 top-0 origin-top-left border-0"
+                              style={{
+                                width: `${previewViewportWidth}px`,
+                                height: `${previewViewportHeight}px`,
+                                transform: `scale(${previewScale})`,
+                              }}
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="border-2 border-dashed border-gray-400 text-center py-2 text-xs text-gray-400 tracking-widest">
-                      {copy.pendingPage}
-                    </div>
-                  )}
+                    )
+                  ) : null}
                 </div>
               </div>
             </div>
