@@ -34,7 +34,7 @@ export default function ThemeSwitch({ compact }: Props) {
       data-loading={loadingTheme}
       aria-busy={loadingTheme}
       onClick={handleToggleTheme}
-      className={`portfolio-action portfolio-action--ghost theme-toggle ${isDark ? 'is-dark' : 'is-light'} ${compact ? 'theme-toggle--compact' : ''}`}
+      className={`theme-toggle ${isDark ? 'is-dark' : 'is-light'} ${compact ? 'theme-toggle--compact' : ''}`}
       aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
       aria-pressed={isDark}
     >
@@ -50,7 +50,7 @@ export default function ThemeSwitch({ compact }: Props) {
         </span>
       </span>
       <span className="theme-toggle__loading" aria-hidden="true">
-        <span className="portfolio-action__spinner" />
+        <span className="theme-toggle__spinner" />
       </span>
     </button>
   )
