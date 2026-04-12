@@ -52,7 +52,7 @@ export default function ContactSection({ mobile, lang }: Props) {
             <div className="flex flex-col gap-3 text-sm">
               <div className="border border-gray-300 px-3 py-2 flex justify-between items-center">
                 <span className="text-xs text-gray-500 uppercase tracking-widest">Email</span>
-                <span className="font-bold text-xs">samuel.mena@example.com</span>
+                <span className="font-bold text-xs">samuel.menapupi@campusucc.edu.co</span>
               </div>
               <div className="border border-gray-300 px-3 py-2 flex justify-between items-center">
                 <span className="text-xs text-gray-500 uppercase tracking-widest">GitHub</span>
