@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface Props {
   mobile?: boolean
   lang: 'es' | 'en'
@@ -8,7 +10,7 @@ export default function AboutSection({ mobile, lang }: Props) {
     lang === 'en'
       ? {
           section: '02 - About Me',
-          placeholder: '[ PHOTO / DIAGRAM ]',
+          photoAlt: 'Portrait photo of Samuel Esteban Mena Pupiales',
           career: 'Career',
           careerValue: 'Software Eng.',
           focus: 'Focus',
@@ -27,7 +29,7 @@ export default function AboutSection({ mobile, lang }: Props) {
         }
       : {
           section: '02 - Sobre Mí',
-          placeholder: '[ FOTO / DIAGRAMA ]',
+          photoAlt: 'Foto de perfil de Samuel Esteban Mena Pupiales',
           career: 'Carrera',
           careerValue: 'Ing. Software',
           focus: 'Enfoque',
@@ -57,8 +59,16 @@ export default function AboutSection({ mobile, lang }: Props) {
 
         {/* Left: Placeholder block (profile/diagram) */}
         <div className="flex flex-col gap-3">
-          <div className={`border-2 border-dashed border-gray-400 flex items-center justify-center ${mobile ? "h-28" : "h-48"}`}>
-            <span className="text-xs text-gray-400 tracking-widest">{copy.placeholder}</span>
+          <div className="border-2 border-black bg-gray-100 overflow-hidden">
+            <div className={`relative ${mobile ? 'aspect-5/6' : 'aspect-4/5'}`}>
+              <Image
+                src="/profile-photo.jpeg"
+                alt={copy.photoAlt}
+                fill
+                sizes={mobile ? '(max-width: 1023px) 100vw' : '380px'}
+                className="object-cover object-center"
+              />
+            </div>
           </div>
           {/* Quick stats */}
           <div className="border border-black p-3 text-xs">
