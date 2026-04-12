@@ -115,12 +115,12 @@ export default function HomeNavSection({ mobile, lang, onLangChange }: Props) {
   }, [mobile, menuOpen])
 
   return (
-    <nav ref={navRef} className={`wireframe-nav flex items-center justify-between mt-0 ${mobile ? 'py-3 flex-wrap gap-y-2' : 'py-4'}`}>
-      <div className="wireframe-nav__brand border border-black px-3 py-1 text-xs font-bold tracking-widest">
+    <nav ref={navRef} className={`wireframe-nav flex items-center justify-between mt-0 ${mobile ? 'py-2 flex-wrap gap-y-1 gap-x-2' : 'py-4'}`}>
+      <div className="wireframe-nav__brand shrink-0 border border-black px-3 py-1 text-xs font-bold tracking-widest">
         SEMPU
       </div>
       {mobile ? (
-        <div className="flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-2 flex-nowrap">
           <LanguageSwitch value={lang} onChange={onLangChange} />
           <button
             type="button"

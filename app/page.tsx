@@ -27,6 +27,104 @@ export default function Page() {
     document.documentElement.lang = nextLang
   }
 
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('.portfolio-shell > section'))
+    if (sections.length === 0) return
+
+    const revealModes = ['fade-up', 'slide-left', 'slide-right'] as const
+
+    const markAsVisible = (section: HTMLElement) => {
+      section.classList.add('section-loaded', 'section-revealed')
+    }
+
+    sections.forEach((section, index) => {
+      section.classList.add('section-scroll-fx', 'section-scroll-lazy')
+      section.dataset.revealMode = revealModes[index % revealModes.length]
+
+      if (index % 2 === 0) {
+        section.classList.add('section-scroll-parallax')
+      }
+    })
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+
+          const section = entry.target as HTMLElement
+          markAsVisible(section)
+          observer.unobserve(section)
+        })
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.18,
+      },
+    )
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect()
+      const isVisibleLayout =
+        rect.width > 0 && rect.height > 0 && window.getComputedStyle(section).display !== 'none'
+      const initiallyVisible = isVisibleLayout && rect.top <= window.innerHeight * 0.88
+
+      if (initiallyVisible) {
+        markAsVisible(section)
+        return
+      }
+
+      observer.observe(section)
+    })
+
+    let rafId = 0
+
+    const updateParallax = () => {
+      rafId = 0
+
+      const parallaxEnabled =
+        window.innerWidth >= 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      sections.forEach((section) => {
+        if (!section.classList.contains('section-scroll-parallax')) return
+
+        if (!parallaxEnabled) {
+          section.style.setProperty('--section-parallax-y', '0px')
+          return
+        }
+
+        const rect = section.getBoundingClientRect()
+        const viewportHeight = window.innerHeight || 1
+        const sectionCenter = rect.top + rect.height / 2
+        const normalizedDistance = (sectionCenter - viewportHeight / 2) / viewportHeight
+        const clampedDistance = Math.max(-1, Math.min(1, normalizedDistance))
+        const parallaxShift = Math.round(clampedDistance * -18)
+
+        section.style.setProperty('--section-parallax-y', `${parallaxShift}px`)
+      })
+    }
+
+    const queueParallaxUpdate = () => {
+      if (rafId) return
+      rafId = window.requestAnimationFrame(updateParallax)
+    }
+
+    updateParallax()
+
+    window.addEventListener('scroll', queueParallaxUpdate, { passive: true })
+    window.addEventListener('resize', queueParallaxUpdate)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', queueParallaxUpdate)
+      window.removeEventListener('resize', queueParallaxUpdate)
+
+      if (rafId) {
+        window.cancelAnimationFrame(rafId)
+      }
+    }
+  }, [])
+
   return (
     <div className="portfolio-theme min-h-screen">
       {/* DESKTOP VIEW */}
