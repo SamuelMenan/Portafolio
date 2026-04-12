@@ -65,6 +65,7 @@ export default function AboutSection({ mobile, lang }: Props) {
                 src="/profile-photo.jpeg"
                 alt={copy.photoAlt}
                 fill
+                loading="eager"
                 sizes={mobile ? '(max-width: 1023px) 100vw' : '380px'}
                 className="object-cover object-center"
               />
