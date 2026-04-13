@@ -1,92 +1,118 @@
-# v0-portfolio-wireframe-design
+# Portafolio
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Portfolio personal construido con Next.js 16, React 19 y Tailwind CSS 4. El proyecto combina una presentacion tipo wireframe/editorial con contenido real, soporte bilingue (ES/EN), tema claro/oscuro y un flujo de contacto que persiste mensajes en MongoDB.
 
-## Built with v0
+## Caracteristicas
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+- Home seccionado con navegacion, hero, about, proyectos, skills, testimonials y contacto.
+- Selector de idioma persistido en `localStorage`.
+- Cambio de tema con `next-themes`.
+- Animaciones de entrada por seccion y efecto parallax en escritorio.
+- Formulario de contacto conectado a `POST /api/contact`.
+- Panel de mensajes en `/messages` para consultar registros guardados en MongoDB.
+- Integracion con Vercel Analytics.
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_p3zT48YXtvABrjn5pmfVFXYZyMNg)
+## Stack
 
-## Getting Started
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- MongoDB
+- `next-themes`
+- `@radix-ui/react-avatar`
+- `@radix-ui/react-toast`
+- `lucide-react`
+- `react-icons`
 
-First, run the development server:
+## Estructura principal
+
+- `app/page.tsx`: pagina principal con home responsive y logica de animacion/idioma.
+- `app/messages/page.tsx`: vista para leer mensajes del contacto con llave de administracion.
+- `app/api/contact/route.ts`: API para guardar y listar mensajes.
+- `components/sections/home/`: secciones del sitio principal.
+- `components/controls/`: switches de idioma y tema.
+- `components/providers/`: provider de tema.
+- `components/ui/`: primitives reutilizables de UI.
+- `lib/mongodb.ts`: conexion a MongoDB con cache para serverless.
+
+## Requisitos
+
+- Node.js 20 o superior.
+- pnpm recomendado, aunque tambien funciona `npm`.
+- Una base de datos MongoDB accesible desde tu entorno local o desde Vercel.
+
+## Instalacion
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+## Variables de entorno
+
+Crea un archivo `.env.local` con estos valores:
+
+```bash
+MONGODB_URI="mongodb+srv://..."
+MONGODB_DB_NAME="portfolio"
+MONGODB_CONTACT_COLLECTION="contact_messages"
+CONTACT_ADMIN_KEY="una-clave-secreta-larga"
+```
+
+Si no configuras `MONGODB_DB_NAME` o `MONGODB_CONTACT_COLLECTION`, el proyecto usa los valores por defecto mostrados arriba.
+
+## Desarrollo
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre `http://localhost:3000` para ver el sitio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-## Contact Form + MongoDB
+- `pnpm dev`: inicia el servidor de desarrollo.
+- `pnpm build`: compila la aplicacion para produccion.
+- `pnpm start`: ejecuta la version compilada.
+- `pnpm lint`: corre ESLint en todo el proyecto.
 
-The contact section now sends messages to a MongoDB collection using `POST /api/contact`.
+## Contacto y MongoDB
 
-### 1) Configure environment variables
+El formulario de contacto envia datos a `POST /api/contact` y guarda:
 
-Create your local environment file from `.env.example`.
+- nombre
+- correo
+- mensaje
+- fecha de creacion
+- estado
+- fuente
+- IP y user agent
 
-Required values:
+La ruta `GET /api/contact` devuelve mensajes recientes y exige la cabecera `x-admin-key` con el valor de `CONTACT_ADMIN_KEY`.
 
-- `MONGODB_URI`: your MongoDB connection string.
-- `MONGODB_DB_NAME`: database name (default: `portfolio`).
-- `MONGODB_CONTACT_COLLECTION`: collection name (default: `contact_messages`).
-- `CONTACT_ADMIN_KEY`: secret key used to read messages.
+## Mensajes
 
-### 2) Run locally
+La pagina `/messages` permite consultar mensajes guardados en MongoDB. Ingresa la llave de administracion para cargar hasta 50 mensajes recientes.
 
-```bash
-pnpm dev
-```
+## Despliegue en Vercel
 
-### 3) Send a contact message
+Antes de desplegar, confirma que estas variables esten cargadas en el proyecto:
 
-Open the home page and submit the contact form. The API validates and stores:
+- `MONGODB_URI`
+- `MONGODB_DB_NAME`
+- `MONGODB_CONTACT_COLLECTION`
+- `CONTACT_ADMIN_KEY`
 
-- name
-- email
-- message
-- createdAt
-- status
-- source
+Tambien verifica que tu cluster de MongoDB permita conexiones desde Vercel.
 
-### 4) Access messages easily
+## Notas de implementacion
 
-Open:
+- El idioma seleccionado se guarda en `localStorage` bajo `portfolio-lang`.
+- El layout usa `app/globals.css`; la hoja `styles/globals.css` no se usa.
+- El proyecto incluye una capa de UI basada en componentes reutilizables dentro de `components/ui`.
 
-- `http://localhost:3000/messages`
+## Rutas
 
-Enter `CONTACT_ADMIN_KEY` to load recent messages from MongoDB.
-
-### 5) Vercel deployment checklist (important)
-
-If `POST /api/contact` returns `500` or `503` in production:
-
-- Add these Environment Variables in Vercel Project Settings:
-	- `MONGODB_URI`
-	- `MONGODB_DB_NAME`
-	- `MONGODB_CONTACT_COLLECTION`
-	- `CONTACT_ADMIN_KEY`
-- Redeploy after saving environment variables.
-- In MongoDB Atlas, allow network access for your deployment (for quick testing: `0.0.0.0/0`, then restrict later).
-- Check Vercel Function Logs for `/api/contact` to see error `code` values like:
-	- `MISSING_MONGODB_URI`
-	- `MONGODB_AUTH_FAILED`
-	- `MONGODB_IP_NOT_ALLOWED`
-	- `MONGODB_TIMEOUT`
-
-## Learn More
-
-To learn more, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
-
-<a href="https://v0.app/chat/api/kiro/clone/SamuelMenan/v0-portfolio-wireframe-design" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+- `/`: pagina principal del portfolio.
+- `/messages`: panel para leer mensajes del contacto.
+- `/api/contact`: API de contacto.
