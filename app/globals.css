@@ -999,3 +999,161 @@
     transition: none;
   }
 }
+
+@keyframes contact-feedback-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-form-panel {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--portfolio-card) 28%, transparent);
+}
+
+.contact-form-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgb(255 255 255 / 6%) 40%, transparent 72%);
+  pointer-events: none;
+}
+
+.contact-form {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.contact-form__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--portfolio-muted);
+}
+
+.contact-form__hint {
+  font-size: 0.66rem;
+  line-height: 1.35;
+  color: color-mix(in oklab, var(--portfolio-accent-strong) 76%, var(--portfolio-muted) 24%);
+  max-height: 2.2rem;
+  opacity: 0.95;
+  transform: translateY(0);
+  overflow: hidden;
+  transition: max-height 220ms ease, opacity 220ms ease, transform 220ms ease;
+}
+
+.contact-form__hint.is-hidden {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  width: 100%;
+  border: 1px solid color-mix(in oklab, var(--portfolio-line) 75%, transparent);
+  border-radius: 0.9rem;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--portfolio-field) 86%, transparent), color-mix(in oklab, var(--portfolio-card) 74%, transparent));
+  color: var(--portfolio-text);
+  padding: 0.68rem 0.84rem;
+  font-size: 0.86rem;
+  transition: border-color 200ms ease, box-shadow 220ms ease, transform 200ms ease, background-color 220ms ease;
+}
+
+.contact-form__textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+  color: color-mix(in oklab, var(--portfolio-muted) 75%, transparent);
+  font-size: 0.76rem;
+}
+
+.contact-form__input:hover,
+.contact-form__textarea:hover {
+  border-color: color-mix(in oklab, var(--portfolio-accent) 45%, var(--portfolio-line));
+}
+
+.contact-form__input:focus-visible,
+.contact-form__textarea:focus-visible {
+  outline: none;
+  border-color: var(--portfolio-accent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--portfolio-accent) 24%, transparent);
+  transform: translateY(-1px);
+}
+
+.contact-form__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.66rem;
+  color: color-mix(in oklab, var(--portfolio-muted) 88%, var(--portfolio-text) 12%);
+}
+
+.contact-form__meter {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--portfolio-line-soft) 30%, transparent);
+  overflow: hidden;
+}
+
+.contact-form__meter-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--portfolio-accent), var(--portfolio-accent-strong));
+  transition: width 260ms ease;
+}
+
+.contact-submit {
+  border-radius: 0.85rem;
+}
+
+.contact-form__feedback {
+  min-height: 1.1rem;
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.contact-form__feedback.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: contact-feedback-pop 260ms ease;
+}
+
+.contact-form__feedback.is-success {
+  color: color-mix(in oklab, #4fc27a 68%, var(--portfolio-text) 32%);
+}
+
+.contact-form__feedback.is-error {
+  color: color-mix(in oklab, #d26363 72%, var(--portfolio-text) 28%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-form__hint,
+  .contact-form__input,
+  .contact-form__textarea,
+  .contact-form__meter-fill,
+  .contact-form__feedback {
+    transition: none;
+    animation: none;
+  }
+}
