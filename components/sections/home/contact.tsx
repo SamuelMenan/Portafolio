@@ -43,8 +43,8 @@ export default function ContactSection({ mobile, lang }: Props) {
           messagePlaceholder: 'Tell me about your project, idea, or need...',
           send: '[ SEND MESSAGE ]',
           sending: '[ SENDING... ]',
-          success: 'Message prepared successfully. I will reply soon.',
-          error: 'Please complete all fields correctly before sending.',
+          success: 'Message sent and saved successfully. I will reply soon.',
+          error: 'Please complete all fields correctly and try again.',
           progress: 'recommended length',
           footer: 'Samuel Esteban Mena Pupiales - Portfolio',
         }
@@ -67,13 +67,14 @@ export default function ContactSection({ mobile, lang }: Props) {
           messagePlaceholder: 'Cuéntame sobre tu proyecto, idea o necesidad...',
           send: '[ ENVIAR MENSAJE ]',
           sending: '[ ENVIANDO... ]',
-          success: 'Mensaje preparado con éxito. Te responderé pronto.',
-          error: 'Completa correctamente todos los campos antes de enviar.',
+          success: 'Mensaje enviado y guardado con éxito. Te responderé pronto.',
+          error: 'Completa correctamente todos los campos y vuelve a intentarlo.',
           progress: 'longitud recomendada',
           footer: 'Samuel Esteban Mena Pupiales - Portafolio',
         }
 
-  const recommendedMessageLength = 500 
+  const minimumMessageLength = 20
+  const recommendedMessageLength = 500
   const messageLength = formValues.message.trim().length
   const messageProgress = Math.min(100, Math.round((messageLength / recommendedMessageLength) * 100))
 
@@ -83,7 +84,7 @@ export default function ContactSection({ mobile, lang }: Props) {
   }, [formValues.email])
 
   const isFormValid =
-    formValues.name.trim().length >= 2 && hasValidEmail && formValues.message.trim().length >= recommendedMessageLength
+    formValues.name.trim().length >= 2 && hasValidEmail && formValues.message.trim().length >= minimumMessageLength
 
   function updateField(field: keyof ContactFormValues, value: string) {
     setFormValues((prev) => ({ ...prev, [field]: value }))
@@ -92,7 +93,7 @@ export default function ContactSection({ mobile, lang }: Props) {
     }
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (isSending) return
 
@@ -102,11 +103,32 @@ export default function ContactSection({ mobile, lang }: Props) {
     }
 
     setIsSending(true)
-    window.setTimeout(() => {
-      setIsSending(false)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formValues.name.trim(),
+          email: formValues.email.trim(),
+          message: formValues.message.trim(),
+        }),
+      })
+
+      if (!response.ok) {
+        setSubmitState('error')
+        return
+      }
+
       setSubmitState('success')
       setFormValues({ name: '', email: '', message: '' })
-    }, 850)
+    } catch {
+      setSubmitState('error')
+    } finally {
+      setIsSending(false)
+    }
   }
 
   const feedbackMessage =

@@ -24,6 +24,46 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Contact Form + MongoDB
+
+The contact section now sends messages to a MongoDB collection using `POST /api/contact`.
+
+### 1) Configure environment variables
+
+Create your local environment file from `.env.example`.
+
+Required values:
+
+- `MONGODB_URI`: your MongoDB connection string.
+- `MONGODB_DB_NAME`: database name (default: `portfolio`).
+- `MONGODB_CONTACT_COLLECTION`: collection name (default: `contact_messages`).
+- `CONTACT_ADMIN_KEY`: secret key used to read messages.
+
+### 2) Run locally
+
+```bash
+pnpm dev
+```
+
+### 3) Send a contact message
+
+Open the home page and submit the contact form. The API validates and stores:
+
+- name
+- email
+- message
+- createdAt
+- status
+- source
+
+### 4) Access messages easily
+
+Open:
+
+- `http://localhost:3000/messages`
+
+Enter `CONTACT_ADMIN_KEY` to load recent messages from MongoDB.
+
 ## Learn More
 
 To learn more, take a look at the following resources:
