@@ -16,8 +16,6 @@ export function getMongoClientPromise() {
     // Serverless-friendly defaults: small pool, no forced warm connections, and bounded timeouts.
     const client = new MongoClient(uri, {
       tls: true,
-      minVersion: 'TLSv1.2',
-      maxVersion: 'TLSv1.2',
       family: 4,
       maxPoolSize: 5,
       minPoolSize: 0,
