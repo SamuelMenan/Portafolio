@@ -64,6 +64,23 @@ Open:
 
 Enter `CONTACT_ADMIN_KEY` to load recent messages from MongoDB.
 
+### 5) Vercel deployment checklist (important)
+
+If `POST /api/contact` returns `500` or `503` in production:
+
+- Add these Environment Variables in Vercel Project Settings:
+	- `MONGODB_URI`
+	- `MONGODB_DB_NAME`
+	- `MONGODB_CONTACT_COLLECTION`
+	- `CONTACT_ADMIN_KEY`
+- Redeploy after saving environment variables.
+- In MongoDB Atlas, allow network access for your deployment (for quick testing: `0.0.0.0/0`, then restrict later).
+- Check Vercel Function Logs for `/api/contact` to see error `code` values like:
+	- `MISSING_MONGODB_URI`
+	- `MONGODB_AUTH_FAILED`
+	- `MONGODB_IP_NOT_ALLOWED`
+	- `MONGODB_TIMEOUT`
+
 ## Learn More
 
 To learn more, take a look at the following resources:

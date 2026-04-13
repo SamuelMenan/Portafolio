@@ -7,6 +7,7 @@ export const dynamic = 'force-dynamic'
 const DATABASE_NAME = process.env.MONGODB_DB_NAME || 'portfolio'
 const COLLECTION_NAME = process.env.MONGODB_CONTACT_COLLECTION || 'contact_messages'
 const ADMIN_KEY = process.env.CONTACT_ADMIN_KEY
+const HAS_MONGODB_URI = Boolean(process.env.MONGODB_URI?.trim())
 
 const MIN_MESSAGE_LENGTH = 20
 const MAX_MESSAGE_LENGTH = 5000
@@ -37,8 +38,59 @@ function toPublicDocument(document: {
   }
 }
 
+function mapRouteError(error: unknown, fallbackMessage: string) {
+  if (error instanceof Error) {
+    const message = error.message.toLowerCase()
+
+    if (message.includes('missing mongodb_uri')) {
+      return {
+        status: 503,
+        error: 'Missing MONGODB_URI in environment variables.',
+        code: 'MISSING_MONGODB_URI',
+      }
+    }
+
+    if (message.includes('authentication failed')) {
+      return {
+        status: 503,
+        error: 'MongoDB authentication failed. Check username/password in MONGODB_URI.',
+        code: 'MONGODB_AUTH_FAILED',
+      }
+    }
+
+    if (message.includes('ip') && message.includes('not allowed')) {
+      return {
+        status: 503,
+        error: 'MongoDB network access denied. Allow Vercel access in Atlas Network Access.',
+        code: 'MONGODB_IP_NOT_ALLOWED',
+      }
+    }
+
+    if (message.includes('timeout') || message.includes('timed out')) {
+      return {
+        status: 503,
+        error: 'MongoDB connection timed out. Check Atlas availability and network access.',
+        code: 'MONGODB_TIMEOUT',
+      }
+    }
+  }
+
+  return {
+    status: 500,
+    error: fallbackMessage,
+    code: 'INTERNAL_ERROR',
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
+    if (!HAS_MONGODB_URI) {
+      return NextResponse.json(
+        { ok: false, error: 'Missing MONGODB_URI in environment variables.', code: 'MISSING_MONGODB_URI' },
+        { status: 503 },
+      )
+    }
+
     const body = await request.json()
 
     const name = normalizeString(body?.name, 120)
@@ -77,16 +129,26 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 },
     )
-  } catch {
+  } catch (error) {
+    const mapped = mapRouteError(error, 'Could not save contact message.')
+    console.error('[api/contact][POST]', error)
+
     return NextResponse.json(
-      { ok: false, error: 'Could not save contact message.' },
-      { status: 500 },
+      { ok: false, error: mapped.error, code: mapped.code },
+      { status: mapped.status },
     )
   }
 }
 
 export async function GET(request: NextRequest) {
   try {
+    if (!HAS_MONGODB_URI) {
+      return NextResponse.json(
+        { ok: false, error: 'Missing MONGODB_URI in environment variables.', code: 'MISSING_MONGODB_URI' },
+        { status: 503 },
+      )
+    }
+
     if (!ADMIN_KEY) {
       return NextResponse.json(
         { ok: false, error: 'Missing CONTACT_ADMIN_KEY in environment variables.' },
@@ -138,10 +200,13 @@ export async function GET(request: NextRequest) {
         }),
       ),
     })
-  } catch {
+  } catch (error) {
+    const mapped = mapRouteError(error, 'Could not fetch contact messages.')
+    console.error('[api/contact][GET]', error)
+
     return NextResponse.json(
-      { ok: false, error: 'Could not fetch contact messages.' },
-      { status: 500 },
+      { ok: false, error: mapped.error, code: mapped.code },
+      { status: mapped.status },
     )
   }
 }
