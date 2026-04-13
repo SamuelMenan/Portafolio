@@ -14,6 +14,9 @@ interface ContactFormValues {
 }
 
 export default function ContactSection({ mobile, lang }: Props) {
+  const cvHref = lang === 'en' ? '/CVingles.png' : '/CVespa%C3%B1ol.png'
+  const cvDownloadName = lang === 'en' ? 'Samuel-Mena-CV-EN.png' : 'Samuel-Mena-CV-ES.png'
+
   const [formValues, setFormValues] = useState<ContactFormValues>({
     name: '',
     email: '',
@@ -170,9 +173,13 @@ export default function ContactSection({ mobile, lang }: Props) {
           {/* Download CTA */}
           <div className="border-2 border-dashed border-gray-400 px-4 py-3 flex items-center justify-between">
             <span className="text-xs text-gray-600">{copy.cv}</span>
-            <div className="border-2 border-black px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
+            <a
+              href={cvHref}
+              download={cvDownloadName}
+              className="portfolio-action border-2 border-black px-4 py-1.5 text-xs font-bold tracking-widest uppercase"
+            >
               {copy.download}
-            </div>
+            </a>
           </div>
         </div>
 

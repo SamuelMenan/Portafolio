@@ -8,6 +8,9 @@ interface Props {
 }
 
 export default function HeroSection({ mobile, lang }: Props) {
+  const cvHref = lang === 'en' ? '/CVingles.png' : '/CVespa%C3%B1ol.png'
+  const cvDownloadName = lang === 'en' ? 'Samuel-Mena-CV-EN.png' : 'Samuel-Mena-CV-ES.png'
+
   const copy =
     lang === 'en'
       ? {
@@ -103,9 +106,16 @@ export default function HeroSection({ mobile, lang }: Props) {
                 <span className="portfolio-action__arrow" aria-hidden="true">→</span>
               </span>
             </button>
-            <div className="border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase w-fit">
-              {copy.downloadCV}
-            </div>
+            <a
+              href={cvHref}
+              download={cvDownloadName}
+              className="portfolio-action border-2 border-black px-6 py-2 text-xs font-bold tracking-widest uppercase w-fit"
+            >
+              <span className="portfolio-action__content">
+                <span className="portfolio-action__label">{copy.downloadCV}</span>
+                <span className="portfolio-action__arrow" aria-hidden="true">↓</span>
+              </span>
+            </a>
           </div>
         </div>
 
