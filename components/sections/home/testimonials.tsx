@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import ChatTypingText from '@/components/ui/chat-typing-text'
 
 interface Testimonial {
   name: string
@@ -107,14 +108,18 @@ export default function TestimonialsSection({ mobile, lang }: Props) {
   return (
     <section id="testimonials" className={`border-b-2 border-black py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
       <div className="flex items-center gap-4 mb-5">
-        <span className="text-xs tracking-widest uppercase font-bold">{copy.section}</span>
+        <span className="text-xs tracking-widest uppercase font-bold">
+          <ChatTypingText text={copy.section} speed={18} startDelay={40} className="chat-typing-text--role" />
+        </span>
         <div className="flex-1 border-t border-black" />
       </div>
 
       <div className={`mb-8 ${mobile ? "" : "max-w-3xl"}`}>
-        <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-2">{copy.references}</p>
+        <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-2">
+          <ChatTypingText text={copy.references} speed={16} startDelay={90} className="chat-typing-text--role" />
+        </p>
         <h2 className={`font-bold tracking-tight leading-tight mb-3 ${mobile ? "text-2xl" : "text-3xl"}`}>
-          {copy.title}
+          <ChatTypingText text={copy.title} speed={9} startDelay={180} className="chat-typing-text--statement" />
         </h2>
         <p className="text-sm text-gray-700 leading-relaxed">
           {copy.body}

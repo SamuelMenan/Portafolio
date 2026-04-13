@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ChatTypingText from '@/components/ui/chat-typing-text'
 
 interface Props {
   mobile?: boolean
@@ -51,7 +52,9 @@ export default function AboutSection({ mobile, lang }: Props) {
     <section id="about" className={`border-b-2 border-black py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
       <div className="flex items-center gap-4 mb-8">
-        <span className="text-xs tracking-widest uppercase font-bold">{copy.section}</span>
+        <span className="text-xs tracking-widest uppercase font-bold">
+          <ChatTypingText text={copy.section} speed={18} startDelay={40} className="chat-typing-text--role" />
+        </span>
         <div className="flex-1 border-t border-black" />
       </div>
 
@@ -82,19 +85,25 @@ export default function AboutSection({ mobile, lang }: Props) {
         {/* Right: Text content */}
         <div className="flex flex-col gap-4">
           <div className="border border-black p-4">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">{copy.block1Title}</p>
+            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">
+              <ChatTypingText text={copy.block1Title} speed={14} startDelay={80} className="chat-typing-text--role" />
+            </p>
             <p className="text-sm text-gray-700 leading-relaxed">
               {copy.block1Body}
             </p>
           </div>
           <div className="border border-black p-4">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">{copy.block2Title}</p>
+            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">
+              <ChatTypingText text={copy.block2Title} speed={14} startDelay={140} className="chat-typing-text--role" />
+            </p>
             <p className="text-sm text-gray-700 leading-relaxed">
               {copy.block2Body}
             </p>
           </div>
           <div className="border border-black p-4">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">{copy.block3Title}</p>
+            <p className="text-xs font-bold uppercase tracking-widest mb-2 border-b border-black pb-1">
+              <ChatTypingText text={copy.block3Title} speed={14} startDelay={200} className="chat-typing-text--role" />
+            </p>
             <p className="text-sm text-gray-700 leading-relaxed">
               {copy.block3Body}
             </p>

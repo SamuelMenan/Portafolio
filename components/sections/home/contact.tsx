@@ -1,6 +1,7 @@
 "use client"
 
 import { FormEvent, useMemo, useState } from 'react'
+import ChatTypingText from '@/components/ui/chat-typing-text'
 
 interface Props {
   mobile?: boolean
@@ -185,7 +186,14 @@ export default function ContactSection({ mobile, lang }: Props) {
 
         {/* Right: Interactive form */}
         <div className="border-2 border-black p-4 contact-form-panel">
-          <p className="text-xs font-bold uppercase tracking-widest mb-4 border-b border-black pb-2">{copy.sendTitle}</p>
+          <p className="text-xs font-bold uppercase tracking-widest mb-4 border-b border-black pb-2">
+            <ChatTypingText
+              text={copy.sendTitle}
+              speed={15}
+              startDelay={80}
+              className="chat-typing-text--role"
+            />
+          </p>
           <form onSubmit={handleSubmit} className="contact-form flex flex-col gap-3" noValidate>
             <div className="contact-form__field">
               <label htmlFor="contact-name" className="contact-form__label">{copy.name}</label>

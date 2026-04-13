@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import ChatTypingText from '@/components/ui/chat-typing-text'
 
 interface Props {
   mobile?: boolean
@@ -74,7 +75,12 @@ export default function HeroSection({ mobile, lang }: Props) {
         <div className="flex flex-col gap-5">
           {/* Role tag */}
           <div className="border border-black w-fit px-3 py-1 text-xs tracking-widest uppercase">
-            {copy.role}
+            <ChatTypingText
+              text={copy.role}
+              speed={14}
+              startDelay={120}
+              className="chat-typing-text--role"
+            />
           </div>
 
           {/* Name */}
@@ -87,7 +93,12 @@ export default function HeroSection({ mobile, lang }: Props) {
           {/* Statement */}
           <div className="border border-dashed border-gray-500 px-4 py-3">
             <p className="text-sm text-gray-700 leading-relaxed">
-              {copy.statement}
+              <ChatTypingText
+                text={copy.statement}
+                speed={8}
+                startDelay={220}
+                className="chat-typing-text--statement"
+              />
             </p>
           </div>
 
