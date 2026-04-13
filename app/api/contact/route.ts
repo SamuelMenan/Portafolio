@@ -58,6 +58,14 @@ function mapRouteError(error: unknown, fallbackMessage: string) {
       }
     }
 
+    if (message.includes('not authorized')) {
+      return {
+        status: 503,
+        error: 'MongoDB user is not authorized for this database/collection.',
+        code: 'MONGODB_NOT_AUTHORIZED',
+      }
+    }
+
     if (message.includes('ip') && message.includes('not allowed')) {
       return {
         status: 503,
@@ -66,11 +74,43 @@ function mapRouteError(error: unknown, fallbackMessage: string) {
       }
     }
 
+    if (message.includes('server selection timed out')) {
+      return {
+        status: 503,
+        error: 'MongoDB server selection timed out. Check Atlas network access and cluster availability.',
+        code: 'MONGODB_SERVER_SELECTION_TIMEOUT',
+      }
+    }
+
+    if (message.includes('querysrv enotfound') || message.includes('getaddrinfo enotfound')) {
+      return {
+        status: 503,
+        error: 'MongoDB SRV/DNS resolution failed. Verify cluster host in MONGODB_URI.',
+        code: 'MONGODB_DNS_ERROR',
+      }
+    }
+
+    if (message.includes('certificate') || message.includes('tls')) {
+      return {
+        status: 503,
+        error: 'MongoDB TLS/SSL handshake failed. Verify URI and Atlas TLS settings.',
+        code: 'MONGODB_TLS_ERROR',
+      }
+    }
+
     if (message.includes('timeout') || message.includes('timed out')) {
       return {
         status: 503,
         error: 'MongoDB connection timed out. Check Atlas availability and network access.',
         code: 'MONGODB_TIMEOUT',
+      }
+    }
+
+    if (message.includes('ecconnrefused') || message.includes('connection refused')) {
+      return {
+        status: 503,
+        error: 'MongoDB connection refused. Verify URI host, port, and network access.',
+        code: 'MONGODB_CONNECTION_REFUSED',
       }
     }
   }

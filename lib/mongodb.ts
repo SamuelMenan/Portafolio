@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb'
 
-const uri = process.env.MONGODB_URI
+const rawUri = process.env.MONGODB_URI
+const uri = rawUri?.trim().replace(/^"|"$/g, '')
 
 const globalForMongo = globalThis as typeof globalThis & {
   _mongoClientPromise?: Promise<MongoClient>
@@ -12,8 +13,25 @@ export function getMongoClientPromise() {
   }
 
   if (!globalForMongo._mongoClientPromise) {
-    const client = new MongoClient(uri)
-    globalForMongo._mongoClientPromise = client.connect()
+    // Serverless-friendly defaults: small pool, no forced warm connections, and bounded timeouts.
+    const client = new MongoClient(uri, {
+      tls: true,
+      minVersion: 'TLSv1.2',
+      maxVersion: 'TLSv1.2',
+      family: 4,
+      maxPoolSize: 5,
+      minPoolSize: 0,
+      maxIdleTimeMS: 15_000,
+      connectTimeoutMS: 10_000,
+      serverSelectionTimeoutMS: 10_000,
+      socketTimeoutMS: 20_000,
+    })
+
+    globalForMongo._mongoClientPromise = client.connect().catch((error) => {
+      // If the first connection attempt fails, allow next requests to retry.
+      globalForMongo._mongoClientPromise = undefined
+      throw error
+    })
   }
 
   return globalForMongo._mongoClientPromise

@@ -1,0 +1,244 @@
+TimeUTC,timestampInMs,requestPath,requestMethod,requestQueryString,responseStatusCode,requestId,requestUserAgent,level,environment,branch,vercelCache,type,function,host,deploymentDomain,deploymentId,durationMs,region,maxMemoryUsed,memorySize,message,projectId,traceId,sessionId,invocationId,instanceId,concurrency,workflowRunId,workflowStepId
+2026-04-13 03:24:17,1776050657911,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,gchdw-1776050657867-1d56b286ac12,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",error,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,,,,,"[api/contact][POST] MongoServerSelectionError: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+
+    at async tM (.next/server/chunks/[root-of-the-server]__0-p7tya._.js:11:44381)
+    at async c (.next/server/chunks/[root-of-the-server]__0-p7tya._.js:11:51276) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-pieovau-shard-00-01.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-02.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-00.1ygbuer.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-ngus5z-shard-0',
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+  
+      at ignore-listed frames {
+    errorLabelSet: Set(3) { 'SystemOverloadedError', 'RetryableError', 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: [Error: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}",prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:24:17,1776050657867,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,gchdw-1776050657867-1d56b286ac12,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,21,iad1,272,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2DWPJQW2J9BF8JJ6TMW9DQ,KJAXngqDfQex,1,,
+2026-04-13 03:18:51,1776050331601,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,bdh6n-1776050331503-af0be32e4314,Mozilla/5.0 (Windows NT; Windows NT 10.0; es-CO) WindowsPowerShell/5.1.26100.7920,error,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,,,,,"[api/contact][POST] MongoServerSelectionError: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+
+    at async tM (.next/server/chunks/[root-of-the-server]__0-p7tya._.js:11:44381)
+    at async c (.next/server/chunks/[root-of-the-server]__0-p7tya._.js:11:51276) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-pieovau-shard-00-01.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-02.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-00.1ygbuer.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-ngus5z-shard-0',
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+  
+      at ignore-listed frames {
+    errorLabelSet: Set(3) { 'SystemOverloadedError', 'RetryableError', 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: [Error: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}",prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:18:51,1776050331503,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,bdh6n-1776050331503-af0be32e4314,Mozilla/5.0 (Windows NT; Windows NT 10.0; es-CO) WindowsPowerShell/5.1.26100.7920,,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,13,iad1,270,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2DJQXDFBNZBP42QMAPW8C3,KJAXngqDfQex,1,,
+2026-04-13 03:16:17,1776050177409,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,kxpsf-1776050147115-0097ee65e7df,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",error,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,,,,,"[api/contact][POST] MongoServerSelectionError: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+
+    at async tM (.next/server/chunks/[root-of-the-server]__0-p7tya._.js:11:44381)
+    at async c (.next/server/chunks/[root-of-the-server]__0-p7tya._.js:11:51276) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-pieovau-shard-00-01.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-02.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-00.1ygbuer.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-ngus5z-shard-0',
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+  
+      at ignore-listed frames {
+    errorLabelSet: Set(3) { 'SystemOverloadedError', 'RetryableError', 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: [Error: C0D8BB083A7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}",prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:15:47,1776050147115,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,kxpsf-1776050147115-0097ee65e7df,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,30301,iad1,275,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2DD3SR47CDSBP2DY3X39E5,KJAXngqDfQex,1,,
+2026-04-13 03:13:04,1776049984439,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,95gjx-1776049980545-1f04fb537050,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",error,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,,,,,"[api/contact][POST] MongoServerSelectionError: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+
+    at ignore-listed frames {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-pieovau-shard-00-02.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-00.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-01.1ygbuer.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-ngus5z-shard-0',
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+  
+      at ignore-listed frames {
+    errorLabelSet: Set(3) { 'SystemOverloadedError', 'RetryableError', 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: [Error: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}",prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:13:00,1776049980545,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,95gjx-1776049980545-1f04fb537050,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,4067,iad1,288,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2D771VS6D7Q8W709APEHVD,bT9fkcyLJPRQ,3,,
+2026-04-13 03:13:04,1776049984438,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,g7988-1776049977457-91937034a064,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",error,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,,,,,"[api/contact][POST] MongoServerSelectionError: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+
+    at ignore-listed frames {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-pieovau-shard-00-02.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-00.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-01.1ygbuer.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-ngus5z-shard-0',
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+  
+      at ignore-listed frames {
+    errorLabelSet: Set(3) { 'SystemOverloadedError', 'RetryableError', 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: [Error: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}",prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:12:57,1776049977457,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,g7988-1776049977457-91937034a064,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,7126,iad1,288,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2D771VS6D7Q8W709APEHVD,bT9fkcyLJPRQ,3,,
+2026-04-13 03:13:04,1776049984436,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,wt75g-1776049953792-394df31de9d1,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",error,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,,,,,"[api/contact][POST] MongoServerSelectionError: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+
+    at ignore-listed frames {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'ReplicaSetNoPrimary',
+    servers: Map(3) {
+      'ac-pieovau-shard-00-02.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-00.1ygbuer.mongodb.net:27017' => [ServerDescription],
+      'ac-pieovau-shard-00-01.1ygbuer.mongodb.net:27017' => [ServerDescription]
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: 'atlas-ngus5z-shard-0',
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  [cause]: MongoNetworkError: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+  
+      at ignore-listed frames {
+    errorLabelSet: Set(3) { 'SystemOverloadedError', 'RetryableError', 'ResetPool' },
+    beforeHandshake: false,
+    [cause]: [Error: C0F8638DCB7F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:912:SSL alert number 80
+    ] {
+      library: 'SSL routines',
+      reason: 'tlsv1 alert internal error',
+      code: 'ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR'
+    }
+  }
+}",prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:12:33,1776049953792,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,wt75g-1776049953792-394df31de9d1,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-theta-seven-20.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,30753,iad1,288,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2D771VS6D7Q8W709APEHVD,bT9fkcyLJPRQ,3,,
+2026-04-13 03:12:13,1776049933775,portafolio-theta-seven-20.vercel.app/,GET,,200,kb9cp-1776049933775-ecc37e9692ce,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,PRERENDER,static,/,portafolio-theta-seven-20.vercel.app,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,101,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:12:12,1776049932852,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app/,GET,,200,jwhkc-1776049932852-2455fa639c15,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36",,production,main,HIT,static,/,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,126,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:12:12,1776049932839,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app/,GET,,200,bsl6m-1776049932839-df26c9365d7b,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36",,production,main,HIT,static,/,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,112,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:12:12,1776049932169,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app/,GET,,200,wspj2-1776049932169-b897b5ac5e78,vercel-favicon/1.0,,production,main,PRERENDER,static,/,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,398,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:12:12,1776049932167,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app/,GET,,200,9646s-1776049932167-3637fadde4a7,vercel-favicon/1.0,,production,main,PRERENDER,static,/,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,portafolio-4zt4pstor-sam100uel-8918s-projects.vercel.app,dpl_3sjnRwCAvEguWMjtDBBoVHxRzkW9,413,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:11:06,1776049866763,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,9pzqq-1776049866763-00cb1730c9fb,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,37,iad1,266,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2D4J0W8JRZCT7J4A13HFFQ,wzlfJ1DjNody,1,,
+2026-04-13 03:10:19,1776049819427,portafolio-theta-seven-20.vercel.app/,GET,,200,56fvl-1776049819427-bcc72aaa0c0b,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",,production,main,HIT,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,16,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:09:36,1776049776759,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app/,GET,,200,hl49x-1776049776759-4ba8851943aa,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36",,production,main,HIT,static,/,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,12,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:09:35,1776049775810,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app/,GET,,200,hjctv-1776049775810-b90670599fdd,"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.0 Safari/537.36",,production,main,HIT,static,/,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,24,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:09:30,1776049770551,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app/,GET,,200,s68bz-1776049770551-adb7c687040c,vercel-favicon/1.0,,production,main,PRERENDER,static,/,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,467,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:09:30,1776049770550,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app/,GET,,200,66nlr-1776049770550-352bbefef6d3,vercel-favicon/1.0,,production,main,PRERENDER,static,/,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,460,sfo1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:06:57,1776049617655,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,vldrm-1776049617655-58fabb30bb1f,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,12,iad1,264,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2CWYR2BYVNDTMR0PD8WPG1,wzlfJ1DjNody,1,,
+2026-04-13 03:06:23,1776049583616,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,zt2t6-1776049583616-fa4ff54e4e30,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,9,iad1,271,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2CVXGF41FKB3MFNA7KHC3Y,wzlfJ1DjNody,1,,
+2026-04-13 03:06:13,1776049573516,portafolio-theta-seven-20.vercel.app/,GET,,304,hsfbn-1776049573516-c5b45ddcc7d1,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,HIT,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,17,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:06:04,1776049564744,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,wvj57-1776049564744-51e5b787f273,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,17,iad1,271,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2CVB2SS6R1539Y4BDAHJPX,wzlfJ1DjNody,1,,
+2026-04-13 03:05:49,1776049549629,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,ljlpb-1776049549629-b049310eb954,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,34,iad1,269,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2CTWAA62H43DJHK7Y62MF9,wzlfJ1DjNody,1,,
+2026-04-13 03:05:28,1776049528210,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,plf5k-1776049528210-d6262a3af38f,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,292,iad1,268,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2CT7D1WD64N67F1H943902,wzlfJ1DjNody,1,,
+2026-04-13 03:04:56,1776049496193,portafolio-theta-seven-20.vercel.app/api/contact,POST,,500,wwlg7-1776049496193-2313e4e28e05,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",,production,main,MISS,function,/api/contact,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,551,iad1,288,2048,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,01KP2CS8569TM1HMFBJPE7Z3TM,Zbx8iQgw4RRQ,1,,
+2026-04-13 03:03:19,1776049399426,portafolio-theta-seven-20.vercel.app/,GET,,304,srm56-1776049399426-8d7bf52da961,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",,production,main,HIT,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,14,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:02:25,1776049345820,portafolio-theta-seven-20.vercel.app/,GET,,304,kkfb5-1776049345820-0c4a35b1220f,"Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",,production,main,HIT,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,1,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:02:25,1776049345728,portafolio-theta-seven-20.vercel.app/,GET,,304,kkfb5-1776049345728-a9c97fd3c33b,"Mozilla/5.0 (Macintosh; Intel Mac OS X 13_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",,production,main,HIT,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,10,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:02:25,1776049345630,portafolio-theta-seven-20.vercel.app/,GET,,200,7b2pc-1776049345630-348726f996a1,"Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1",,production,main,HIT,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,14,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:02:14,1776049334544,portafolio-theta-seven-20.vercel.app/,GET,,200,zgsn6-1776049334544-8e8140c50a0b,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",,production,main,HIT,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,36,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
+2026-04-13 03:01:40,1776049300605,portafolio-theta-seven-20.vercel.app/,GET,,200,k4jf6-1776049300605-a5aae63f78e9,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",,production,main,PRERENDER,static,/,portafolio-theta-seven-20.vercel.app,portafolio-g5ge23uc1-sam100uel-8918s-projects.vercel.app,dpl_J91r2H3LVpYApqj7gV7HmuyvtzCy,214,iad1,,,,prj_cbb8w1zwmFELiW3ZOg750m5C8eMV,,,,,,,
