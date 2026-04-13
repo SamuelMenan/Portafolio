@@ -32,6 +32,8 @@ export default function Page() {
     if (sections.length === 0) return
 
     const revealModes = ['fade-up', 'slide-left', 'slide-right'] as const
+    const shouldRevealImmediately =
+      window.innerWidth < 1024 || window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const markAsVisible = (section: HTMLElement) => {
       section.classList.add('section-loaded', 'section-revealed')
@@ -45,6 +47,14 @@ export default function Page() {
         section.classList.add('section-scroll-parallax')
       }
     })
+
+    if (shouldRevealImmediately) {
+      sections.forEach((section) => {
+        markAsVisible(section)
+        section.style.setProperty('--section-parallax-y', '0px')
+      })
+      return
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {

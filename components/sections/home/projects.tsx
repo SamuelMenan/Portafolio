@@ -38,7 +38,7 @@ const projectGroups: ProjectGroup[] = [
         technologies: ["JavaScript", "HTML5 + CSS3", "Arquitectura Componentes", "Integración REST"],
         keyDecision: "Separación clara entre capa de presentación y lógica de datos (desacoplamiento frontend-backend). Renderizado dinámico para contenido cambiante.",
         repositoryUrl: "https://github.com/SamuelMenan/AlmasEnAccion",
-        liveUrl: "",
+        liveUrl: "https://almas-en-accion.vercel.app/",
       },
       {
         title: "AlmasEnAccionBackend",
@@ -91,7 +91,7 @@ const projectGroups: ProjectGroup[] = [
         approach: "Diseñé endpoints para gestión de usuarios y datos personalizados. Implementé lógica para persistencia de playlists e historial.",
         technologies: ["Node.js", "Express", "Base de Datos", "API REST"],
         keyDecision: "Separación entre datos externos (API) y datos internos (usuarios). Diseño de endpoints enfocados en bajo acoplamiento.",
-        repositoryUrl: "",
+        repositoryUrl: "https://github.com/SamuelMenan/PlayTubeMusicBackEnd",
         liveUrl: "",
       },
     ],
@@ -143,7 +143,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                 technologies: ['JavaScript', 'HTML5 + CSS3', 'Component Architecture', 'REST Integration'],
                 keyDecision: 'Clear separation between presentation layer and data logic (frontend-backend decoupling). Dynamic rendering for evolving content.',
                 repositoryUrl: 'https://github.com/SamuelMenan/AlmasEnAccion',
-                liveUrl: '',
+                liveUrl: 'https://almas-en-accion.vercel.app/',
               },
               {
                 title: 'AlmasEnAccionBackend',
@@ -196,7 +196,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                 approach: 'Designed endpoints for user and custom data management. Implemented persistence logic for playlists and history.',
                 technologies: ['Node.js', 'Express', 'Database', 'REST API'],
                 keyDecision: 'Separation between external data (API) and internal data (users). Endpoint design focused on low coupling.',
-                repositoryUrl: '',
+                repositoryUrl: 'https://github.com/SamuelMenan/PlayTubeMusicBackEnd',
                 liveUrl: '',
               },
             ],
@@ -229,6 +229,18 @@ export default function ProjectsSection({ mobile, lang }: Props) {
     }, 900)
   }
 
+  function canUseIframePreview(url: string): boolean {
+    try {
+      const hostname = new URL(url).hostname
+      if (hostname.endsWith('vercel.app') && hostname.includes('-git-')) {
+        return false
+      }
+      return true
+    } catch {
+      return false
+    }
+  }
+
   return (
     <section id="projects" className={`border-b-2 border-black py-12 scroll-mt-20 ${mobile ? "py-8" : ""}`}>
       {/* Section header */}
@@ -248,6 +260,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                 {group.modules.map((module, moduleIndex) => {
                   const repoActionId = `${group.title}-${module.title}-${moduleIndex}-repo`
                   const pageActionId = `${group.title}-${module.title}-${moduleIndex}-page`
+                  const useIframePreview = !mobile && (module.liveUrl ? canUseIframePreview(module.liveUrl) : false)
 
                   return (
                   <div key={module.title} className="border-2 border-black">
@@ -306,23 +319,7 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                           )}
 
                           {module.liveUrl ? (
-                            mobile ? (
-                              <a
-                                href={module.liveUrl}
-                                target="_blank"
-                                rel="noreferrer"
-                                data-loading={loadingAction === pageActionId}
-                                aria-busy={loadingAction === pageActionId}
-                                onClick={() => triggerLoadingFeedback(pageActionId)}
-                                className="portfolio-action block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
-                              >
-                                <span className="portfolio-action__content">
-                                  <span className="portfolio-action__spinner" aria-hidden="true" />
-                                  <span className="portfolio-action__label">{loadingAction === pageActionId ? copy.loading : copy.page}</span>
-                                  <span className="portfolio-action__arrow" aria-hidden="true">→</span>
-                                </span>
-                              </a>
-                            ) : (
+                            useIframePreview ? (
                               <div className="relative group">
                                 <a
                                   href={module.liveUrl}
@@ -355,6 +352,22 @@ export default function ProjectsSection({ mobile, lang }: Props) {
                                   </div>
                                 </div>
                               </div>
+                            ) : (
+                              <a
+                                href={module.liveUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                data-loading={loadingAction === pageActionId}
+                                aria-busy={loadingAction === pageActionId}
+                                onClick={() => triggerLoadingFeedback(pageActionId)}
+                                className="portfolio-action block border-2 border-black text-center py-2 text-xs tracking-widest font-bold hover:bg-black hover:text-white transition-colors"
+                              >
+                                <span className="portfolio-action__content">
+                                  <span className="portfolio-action__spinner" aria-hidden="true" />
+                                  <span className="portfolio-action__label">{loadingAction === pageActionId ? copy.loading : copy.page}</span>
+                                  <span className="portfolio-action__arrow" aria-hidden="true">→</span>
+                                </span>
+                              </a>
                             )
                           ) : null}
                         </div>

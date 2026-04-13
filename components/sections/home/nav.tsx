@@ -20,7 +20,6 @@ export default function HomeNavSection({ mobile, lang, onLangChange }: Props) {
   const [activeSection, setActiveSection] = useState<string>('about')
   const [loadingSection, setLoadingSection] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [menuBusy, setMenuBusy] = useState(false)
   const navRef = useRef<HTMLElement | null>(null)
 
   function getVisibleSectionById(id: string): HTMLElement | null {
@@ -70,16 +69,14 @@ export default function HomeNavSection({ mobile, lang, onLangChange }: Props) {
     setActiveSection(id)
     if (mobile) setMenuOpen(false)
     section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const feedbackDuration = mobile ? 220 : 360
     window.setTimeout(() => {
       setLoadingSection((prev) => (prev === id ? null : prev))
-    }, 550)
+    }, feedbackDuration)
   }
 
   function toggleMobileMenu() {
-    if (menuBusy) return
-    setMenuBusy(true)
     setMenuOpen((prev) => !prev)
-    window.setTimeout(() => setMenuBusy(false), 380)
   }
 
   useEffect(() => {
@@ -124,8 +121,6 @@ export default function HomeNavSection({ mobile, lang, onLangChange }: Props) {
           <LanguageSwitch value={lang} onChange={onLangChange} />
           <button
             type="button"
-            data-loading={menuBusy}
-            aria-busy={menuBusy}
             className="portfolio-action portfolio-action--ghost wireframe-nav__menu border border-black px-3 py-1 text-xs"
             aria-label={menuOpen ? (lang === 'en' ? 'Close menu' : 'Cerrar menú') : (lang === 'en' ? 'Open menu' : 'Abrir menú')}
             aria-expanded={menuOpen}
@@ -133,7 +128,6 @@ export default function HomeNavSection({ mobile, lang, onLangChange }: Props) {
             onClick={toggleMobileMenu}
           >
             <span className="portfolio-action__content">
-              <span className="portfolio-action__spinner" aria-hidden="true" />
               <span className="wireframe-nav__menu-label">{menuLabel}</span>
               <span className="material-symbols-rounded wireframe-nav__menu-icon" aria-hidden="true">
                 {menuOpen ? 'close' : 'menu'}

@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/components/providers'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Wireframe — Samuel Esteban Mena Pupiales Portfolio',
+  title: 'Portafolio',
   description: 'Lo-fi wireframe for a personal portfolio website. Grayscale structural layout for a frontend-focused software engineering student.',
   generator: 'v0.app',
   icons: {
